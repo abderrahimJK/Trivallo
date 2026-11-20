@@ -1,0 +1,12 @@
+# Production: one JSON object per log line (Logstash format) so logs are greppable and shippable.
+logging:
+  structured:
+    format:
+      console: logstash
+
+# The public site has no use for Swagger UI; turn it on temporarily with API_DOCS_ENABLED=true if needed.
+springdoc:
+  api-docs:
+    enabled: ${API_DOCS_ENABLED:false}
+  swagger-ui:
+    enabled: ${API_DOCS_ENABLED:false}
