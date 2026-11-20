@@ -128,7 +128,10 @@ type MenuId = 'destinations' | 'ways';
         </div>
       }
       @if (openMenu() === 'ways') {
-        <div id="menu-ways" class="absolute inset-x-0 top-full hidden border-t border-border bg-background shadow-xl md:block">
+        <div
+          id="menu-ways"
+          class="absolute inset-x-0 top-full hidden border-t border-border bg-background shadow-xl md:block"
+        >
           <div class="container-page grid gap-8 py-8 lg:grid-cols-[220px_1fr]">
             <div>
               <p class="text-lg font-bold" i18n="@@header.tripType">Trip type</p>
