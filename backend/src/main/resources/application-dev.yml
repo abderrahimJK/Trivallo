@@ -1,0 +1,8 @@
+# Local development: readable logs and sample activities loaded on top of the real migrations.
+spring:
+  flyway:
+    locations: classpath:db/migration,classpath:db/devdata
+
+logging:
+  level:
+    com.trivallo: DEBUG

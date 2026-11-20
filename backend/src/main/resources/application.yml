@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: trivallo-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/trivallo}
+    username: ${DB_USERNAME:trivallo}
+    password: ${DB_PASSWORD:trivallo}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Flyway owns the schema; Hibernate only checks that entities match it.
+      ddl-auto: validate
+    properties:
+      hibernate:
+        # Loads lazy collections (translations, images) for a whole page in a few queries instead of N+1.
+        default_batch_fetch_size: 50
+  flyway:
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # issuer-uri is what tokens say (the public Keycloak URL); jwk-set-uri is where the
+          # API fetches keys, which inside Docker is the internal hostname.
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/trivallo}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8081/realms/trivallo/protocol/openid-connect/certs}
+          audiences: trivallo-api
+
+server:
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework
+
+trivallo:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  default-produces-media-type: application/json

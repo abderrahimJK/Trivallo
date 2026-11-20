@@ -1,0 +1,85 @@
+{
+  "realm": "trivallo",
+  "displayName": "Trivallo",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "bruteForceProtected": true,
+  "internationalizationEnabled": true,
+  "supportedLocales": ["en", "fr"],
+  "defaultLocale": "en",
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      { "name": "TRAVELLER", "description": "Can request bookings and write reviews" },
+      { "name": "ADMIN", "description": "Manages content, bookings and review moderation" },
+      { "name": "offline_access", "description": "Keycloak built-in: offline tokens" },
+      { "name": "uma_authorization", "description": "Keycloak built-in: UMA" },
+      {
+        "name": "default-roles-trivallo",
+        "description": "Granted to every new account",
+        "composite": true,
+        "composites": { "realm": ["offline_access", "uma_authorization", "TRAVELLER"] }
+      }
+    ]
+  },
+  "defaultRole": { "name": "default-roles-trivallo" },
+  "clients": [
+    {
+      "clientId": "trivallo-web",
+      "name": "Trivallo web app",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:4200/*"],
+      "webOrigins": ["http://localhost:4200"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:4200/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "trivallo-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "trivallo-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin@trivallo.local",
+      "email": "admin@trivallo.local",
+      "firstName": "Dev",
+      "lastName": "Admin",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "admin", "temporary": false }],
+      "realmRoles": ["default-roles-trivallo", "ADMIN"]
+    },
+    {
+      "username": "traveller@trivallo.local",
+      "email": "traveller@trivallo.local",
+      "firstName": "Dev",
+      "lastName": "Traveller",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "traveller", "temporary": false }],
+      "realmRoles": ["default-roles-trivallo"]
+    }
+  ]
+}
