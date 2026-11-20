@@ -18,6 +18,7 @@ English and French, prices in EUR. Bookings are requests confirmed by an admin; 
 Prerequisites: JDK 21, Maven 3.9+, Docker.
 
 ```bash
+cp .env.example .env                       # local passwords; .env is git-ignored
 docker compose up -d                       # Postgres on :5432, Keycloak on :8081
 cd backend
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
