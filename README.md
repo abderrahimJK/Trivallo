@@ -8,10 +8,11 @@ English and French, prices in EUR. Bookings are requests confirmed by an admin; 
 | Path | What it is |
 |---|---|
 | `backend/` | Spring Boot 4 API (Java 21, Maven), one modular monolith |
-| `frontend/` | Angular SSR app (week 2) |
+| `frontend/` | Angular 22 SSR app, EN/FR, Tailwind ([frontend/README.md](frontend/README.md)) |
 | `infra/keycloak/` | Development realm imported into Keycloak on start |
 | `infra/postgres/init/` | Creates the Keycloak database on the first Postgres start |
-| `compose.yaml` | Local stack: Postgres, Keycloak and optionally the backend |
+| `infra/nginx/` | Local reverse proxy: `/api` to the backend, the rest to Angular SSR |
+| `compose.yaml` | Local stack: Postgres, Keycloak, and optionally backend + frontend + Nginx |
 
 ## Run it locally
 
@@ -24,11 +25,19 @@ cd backend
 mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
+Then the frontend, in another terminal:
+
+```bash
+cd frontend
+npm ci && npm start                        # http://localhost:4200, /api proxied to :8080
+```
+
 - API: http://localhost:8080/api/v1/cities
 - Swagger UI: http://localhost:8080/swagger-ui.html (dev only, disabled in `prod`)
 - Keycloak admin console: http://localhost:8081 (`admin` / `admin`)
 
-To run the backend in a container too: `docker compose --profile app up -d --build`.
+To run everything in containers like production: `docker compose --profile app up -d --build`,
+then open http://localhost:8000 (Nginx in front of the frontend and the API).
 
 The `dev` profile loads a few sample activities from `db/devdata` on top of the real migrations.
 Use a separate database for anything that runs with the `prod` profile: Flyway will refuse to start a

@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens from design-system/trivallo (MASTER.md + tokens.css), generated with the
+ * ui-ux-pro-max skill. Change them there first, then mirror here.
+ * Concept: "Aurora over the dunes": Majorelle sky blue meets a Sahara sunset orange.
+ */
+@theme {
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+
+  /* Semantic colors (design-system/trivallo/tokens.css) */
+  --color-primary: #0ea5e9;
+  --color-on-primary: #0f172a;
+  --color-secondary: #38bdf8;
+  --color-on-secondary: #0f172a;
+  --color-accent: #ea580c;
+  --color-on-accent: #000000;
+  --color-background: #f0f9ff;
+  --color-foreground: #0c4a6e;
+  --color-card: #ffffff;
+  --color-card-foreground: #0c4a6e;
+  --color-muted: #e8f2f8;
+  --color-muted-foreground: #475569;
+  --color-border: #bae6fd;
+  --color-destructive: #dc2626;
+  --color-ring: #000000;
+
+  /* Chapter colors, one per city (MASTER.md "Project Decisions"); white text passes 4.5:1 on each */
+  --color-marrakech: #be123c;
+  --color-ouarzazate: #b45309;
+  --color-merzouga: #c2410c;
+
+  /* Shadows (MASTER.md "Shadow Depths") */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+  --animate-aurora: aurora 12s ease-in-out infinite alternate;
+  --animate-rise: rise 400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes aurora {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background font-sans text-base leading-relaxed text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    @apply font-display leading-[0.95] font-normal tracking-wide uppercase;
+  }
+
+  a,
+  button,
+  select,
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Buttons: 44px minimum touch target */
+  .btn-accent {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-bold tracking-wide text-on-accent uppercase shadow-md transition duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none disabled:hover:translate-y-0;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-bold tracking-wide text-on-primary uppercase transition duration-200 hover:bg-secondary;
+  }
+
+  .btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-2 border-foreground/15 bg-card px-5 text-sm font-semibold text-foreground transition duration-200 hover:border-foreground;
+  }
+
+  .field {
+    @apply min-h-11 w-full rounded-xl border border-border bg-card px-3 text-base text-foreground transition duration-200 focus:border-foreground focus:outline-none;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-bold tracking-widest text-muted-foreground uppercase;
+  }
+
+  /* Aurora mesh: primary, secondary and accent blended, slowly drifting */
+  .aurora {
+    background-color: var(--color-foreground);
+    background-image:
+      radial-gradient(60% 80% at 15% 20%, color-mix(in srgb, var(--color-primary) 85%, transparent) 0%, transparent 60%),
+      radial-gradient(55% 75% at 85% 35%, var(--color-accent) 0%, transparent 65%),
+      radial-gradient(70% 90% at 60% 100%, color-mix(in srgb, #db2777 70%, transparent) 0%, transparent 65%),
+      radial-gradient(40% 60% at 40% 60%, color-mix(in srgb, var(--color-secondary) 60%, transparent) 0%, transparent 70%);
+    background-size: 160% 160%;
+    @apply animate-aurora;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold tracking-[0.2em] uppercase;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -14,3 +14,7 @@ dist/
 
 # OS
 .DS_Store
+
+# Python bytecode from the ui-ux-pro-max skill scripts
+__pycache__/
+*.pyc
