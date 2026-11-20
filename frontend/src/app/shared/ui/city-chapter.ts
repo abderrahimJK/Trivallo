@@ -1,49 +1,26 @@
 /**
- * Each launch city is a "chapter" of the home page story (design-system/trivallo/MASTER.md,
- * "Project Decisions"). The chapter color tints that city's hero, placeholders and labels.
+ * Each launch city has a color (design-system/trivallo/MASTER.md, "Project Decisions").
+ * In revision 2 it only tints image placeholders until real photos are uploaded.
  * Class names are written out in full so Tailwind can find them.
  */
-export interface CityChapter {
-  number: string;
-  /** Solid chapter color, white text passes 4.5:1 on it. */
-  surface: string;
-  /** Chapter color as text on white or the page background. */
-  text: string;
-  /** Gradient used for image placeholders and heroes. */
-  gradient: string;
+export interface CityTone {
+  /** Light background for placeholders. */
+  tint: string;
+  /** Icon color on that background. */
+  ink: string;
 }
 
-const CHAPTERS: Record<string, CityChapter> = {
-  marrakech: {
-    number: '01',
-    surface: 'bg-marrakech',
-    text: 'text-marrakech',
-    gradient: 'from-marrakech via-[#9f1239] to-[#4c0519]',
-  },
-  ouarzazate: {
-    number: '02',
-    surface: 'bg-ouarzazate',
-    text: 'text-ouarzazate',
-    gradient: 'from-ouarzazate via-[#92400e] to-[#451a03]',
-  },
-  merzouga: {
-    number: '03',
-    surface: 'bg-merzouga',
-    text: 'text-merzouga',
-    gradient: 'from-merzouga via-[#9a3412] to-[#431407]',
-  },
+const TONES: Record<string, CityTone> = {
+  marrakech: { tint: 'bg-[#fdecef]', ink: 'text-marrakech' },
+  ouarzazate: { tint: 'bg-[#fdf3e7]', ink: 'text-ouarzazate' },
+  merzouga: { tint: 'bg-[#fdefe7]', ink: 'text-merzouga' },
 };
 
-/** Cities added after launch fall back to the brand foreground until they get their own chapter color. */
-const FALLBACK: CityChapter = {
-  number: '··',
-  surface: 'bg-foreground',
-  text: 'text-foreground',
-  gradient: 'from-foreground via-[#075985] to-[#082f49]',
-};
+/** Cities added after launch get a neutral tone until they have their own. */
+const FALLBACK: CityTone = { tint: 'bg-muted', ink: 'text-muted-foreground' };
 
-export const CHAPTER_ORDER = Object.keys(CHAPTERS);
+export const CITY_ORDER = Object.keys(TONES);
 
-export function cityChapter(slug: string | null | undefined): CityChapter {
-  return (slug && CHAPTERS[slug]) || FALLBACK;
+export function cityTone(slug: string | null | undefined): CityTone {
+  return (slug && TONES[slug]) || FALLBACK;
 }

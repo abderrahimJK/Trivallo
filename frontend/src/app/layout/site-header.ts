@@ -13,14 +13,20 @@ interface NavLink {
   imports: [RouterLink, RouterLinkActive, LanguageSwitcher, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="sticky top-0 z-30 bg-foreground/95 text-white backdrop-blur">
+    <header class="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur">
       <div class="container-page flex h-16 items-center justify-between gap-4">
         <a
           routerLink="/"
-          class="font-display flex min-h-11 items-center text-3xl tracking-widest"
+          class="flex min-h-11 items-center gap-2 text-xl font-extrabold tracking-tight"
           (click)="menuOpen.set(false)"
         >
-          Trivallo<span class="text-accent">.</span>
+          <span
+            class="flex size-8 items-center justify-center rounded-lg bg-primary text-on-primary"
+            aria-hidden="true"
+          >
+            <trv-icon name="dune" class="size-5" />
+          </span>
+          Trivallo
         </a>
 
         <nav
@@ -31,18 +37,18 @@ interface NavLink {
           @for (link of links; track link.label) {
             <a
               [routerLink]="link.commands"
-              routerLinkActive="!text-white after:scale-x-100"
-              class="relative flex min-h-11 items-center px-3 text-sm font-semibold text-white/80 transition-colors duration-200 after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-white hover:after:scale-x-100"
+              routerLinkActive="!text-foreground after:bg-primary"
+              class="relative flex min-h-11 items-center px-3 font-semibold text-muted-foreground transition-colors duration-200 after:absolute after:inset-x-3 after:-bottom-[11px] after:h-0.5 hover:text-foreground"
               >{{ link.label }}</a
             >
           }
         </nav>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
           <trv-language-switcher />
           <button
             type="button"
-            class="flex size-11 items-center justify-center rounded-full text-white transition-colors duration-200 hover:bg-white/10 md:hidden"
+            class="flex size-11 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-muted md:hidden"
             [attr.aria-expanded]="menuOpen()"
             aria-controls="mobile-menu"
             (click)="menuOpen.update((open) => !open)"
@@ -56,16 +62,16 @@ interface NavLink {
       @if (menuOpen()) {
         <nav
           id="mobile-menu"
-          class="border-t border-white/10 md:hidden"
+          class="border-t border-border md:hidden"
           i18n-aria-label="@@header.navLabel"
           aria-label="Main"
         >
-          <div class="container-page flex flex-col py-3">
+          <div class="container-page flex flex-col py-2">
             @for (link of links; track link.label) {
               <a
                 [routerLink]="link.commands"
-                routerLinkActive="text-accent"
-                class="font-display flex min-h-12 items-center text-3xl tracking-wide"
+                routerLinkActive="text-primary"
+                class="flex min-h-12 items-center text-lg font-semibold"
                 (click)="menuOpen.set(false)"
                 >{{ link.label }}</a
               >
@@ -80,9 +86,9 @@ export class SiteHeader {
   protected readonly menuOpen = signal(false);
 
   protected readonly links: NavLink[] = [
-    { label: $localize`:@@header.allActivities:All activities`, commands: ['/activities'] },
     { label: 'Marrakech', commands: ['/cities', 'marrakech'] },
     { label: 'Ouarzazate', commands: ['/cities', 'ouarzazate'] },
     { label: 'Merzouga', commands: ['/cities', 'merzouga'] },
+    { label: $localize`:@@header.allActivities:All activities`, commands: ['/activities'] },
   ];
 }

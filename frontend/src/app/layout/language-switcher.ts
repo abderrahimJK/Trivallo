@@ -15,17 +15,17 @@ import { Icon } from '../shared/ui/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="flex items-center gap-0.5 text-sm">
-      <trv-icon name="globe" class="mr-1 size-4 text-white/70" />
+      <trv-icon name="globe" class="mr-1 size-4 text-muted-foreground" />
       @for (locale of locales; track locale.code) {
         @if (locale.code === currentLocale) {
           <span
-            class="flex size-9 items-center justify-center rounded-full bg-white font-bold text-foreground uppercase"
+            class="flex size-9 items-center justify-center rounded-lg bg-foreground text-sm font-bold text-background uppercase"
             aria-current="true"
             >{{ locale.code }}</span
           >
         } @else {
           <a
-            class="flex size-11 items-center justify-center rounded-full font-bold text-white/80 uppercase transition-colors duration-200 hover:bg-white/10 hover:text-white"
+            class="flex size-11 items-center justify-center rounded-lg text-sm font-bold text-muted-foreground uppercase transition-colors duration-200 hover:bg-muted hover:text-foreground"
             [href]="'/' + locale.code + currentPath()"
             [attr.hreflang]="locale.code"
             [attr.lang]="locale.code"

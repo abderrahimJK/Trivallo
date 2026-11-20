@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit } from '@angular/core';
 import { SeoService } from '../../core/seo/seo.service';
-import { Dunes } from '../../shared/ui/dunes';
+import { Breadcrumb } from '../../shared/ui/breadcrumb';
+import { FaqSection } from '../../shared/ui/faq-section';
 import { ActivityBrowser } from './activity-browser';
 import { toActivityFilters } from './query-filters';
 
 @Component({
   selector: 'trv-activities-page',
-  imports: [ActivityBrowser, Dunes],
+  imports: [ActivityBrowser, Breadcrumb, FaqSection],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="aurora relative isolate overflow-hidden text-white">
-      <div class="absolute inset-0 -z-10 bg-[#082f49]/45"></div>
-      <div class="container-page pt-12 pb-24 sm:pt-16 sm:pb-28">
-        <h1 class="animate-rise max-w-3xl text-6xl sm:text-8xl" i18n="@@activities.title">
-          Excursions and activities
-        </h1>
-        <p class="mt-3 max-w-2xl text-lg text-white/90" i18n="@@activities.subtitle">
-          Desert nights, mountain day trips, balloon flights and cooking classes across Marrakech,
-          Ouarzazate and Merzouga.
-        </p>
-      </div>
-      <trv-dunes class="absolute inset-x-0 bottom-0 h-16 text-background sm:h-20" />
-    </section>
-    <div class="container-page mt-6">
-      <trv-activity-browser [filters]="filters()" />
+    <div class="container-page pt-2">
+      <trv-breadcrumb [crumbs]="crumbs" />
+      <h1 class="mt-2 text-4xl sm:text-5xl" i18n="@@activities.title">Excursions and activities</h1>
+      <p class="mt-3 max-w-3xl text-lg text-muted-foreground" i18n="@@activities.subtitle">
+        Desert nights, mountain day trips, balloon flights and cooking classes across Marrakech,
+        Ouarzazate and Merzouga.
+      </p>
+
+      <section class="mt-10" aria-labelledby="trips-title">
+        <h2 id="trips-title" class="section-title mb-4" i18n="@@activities.listTitle">Our trips</h2>
+        <trv-activity-browser [filters]="filters()" />
+      </section>
+
+      <trv-faq-section class="mt-20" />
     </div>
   `,
 })
@@ -37,6 +37,8 @@ export class ActivitiesPage implements OnInit {
   readonly page = input<string>();
 
   private readonly seo = inject(SeoService);
+
+  protected readonly crumbs = [{ label: $localize`:@@header.allActivities:All activities` }];
 
   protected readonly filters = computed(() =>
     toActivityFilters({
