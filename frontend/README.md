@@ -49,12 +49,14 @@ src/app
 ## Design system
 
 The look comes from `design-system/trivallo/` at the repo root (`MASTER.md`, `tokens.css`,
-`tokens.json`), generated with the ui-ux-pro-max skill in `.claude/skills/`. Concept: "Aurora
-over the dunes" (Majorelle sky blue meets a Sahara sunset), Bebas Neue for display, Source Sans 3
-for text, one chapter color per city (`shared/ui/city-chapter.ts`).
+`tokens.json`), generated with the ui-ux-pro-max skill in `.claude/skills/`. Current direction is
+**revision 2, "Clean destination guide"**: white pages, Inter, one brand blue for links, one
+terracotta CTA, photography first. Pages follow a destination-page pattern: breadcrumb, title,
+hero image, refine bar, trip rows with key facts and price, FAQ.
 
 - Change a token in `design-system/trivallo/` first, then mirror it in `src/styles.css` (`@theme`).
-- Primary and accent never carry body text: they fail 4.5:1 on light backgrounds.
+- Reusable pieces live in `shared/ui`: `trip-row` (list), `activity-card` (grid), `breadcrumb`,
+  `faq` / `faq-section`, `media-frame` (optimized image with a city-tinted placeholder).
 - Motion is CSS only and switched off under `prefers-reduced-motion`.
 
 ## Translations

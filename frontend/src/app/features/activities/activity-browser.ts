@@ -9,90 +9,82 @@ import {
   City,
   Page,
 } from '../../core/api/catalog.models';
-import { ActivityCard } from '../../shared/ui/activity-card';
 import { CardSkeleton } from '../../shared/ui/card-skeleton';
 import { EmptyState } from '../../shared/ui/empty-state';
 import { Pagination } from '../../shared/ui/pagination';
+import { TripRow } from '../../shared/ui/trip-row';
 import { ActivityFilterPanel } from './activity-filter-panel';
 
 const PAGE_SIZE = 12;
 
 /**
- * Filter panel + results grid + pagination. Filters come in from the page's query params
+ * Refine bar + trip list + pagination. Filters come in from the page's query params
  * and go back out by navigating, so every filtered list has a shareable, crawlable URL.
  * Used by the activities page and, with a fixed city, by city pages.
  */
 @Component({
   selector: 'trv-activity-browser',
-  imports: [ActivityCard, ActivityFilterPanel, CardSkeleton, EmptyState, Pagination],
+  imports: [ActivityFilterPanel, CardSkeleton, EmptyState, Pagination, TripRow],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="grid gap-6 lg:grid-cols-[260px_1fr]">
-      <aside class="lg:sticky lg:top-20 lg:self-start">
-        <trv-activity-filter-panel
-          [filters]="filters()"
-          [cities]="cities.value() ?? []"
-          [categories]="categories.value() ?? []"
-          [showCity]="!fixedCity()"
-          [hasActiveFilters]="hasActiveFilters()"
-          (changed)="applyFilters($event)"
-          (clear)="clearFilters()"
-        />
-      </aside>
+    <trv-activity-filter-panel
+      [filters]="filters()"
+      [cities]="cities.value() ?? []"
+      [categories]="categories.value() ?? []"
+      [showCity]="!fixedCity()"
+      [hasActiveFilters]="hasActiveFilters()"
+      (changed)="applyFilters($event)"
+      (clear)="clearFilters()"
+    />
 
-      <div>
-        @if (results.hasValue()) {
-          @let result = results.value();
-          <p class="eyebrow mb-4 text-muted-foreground" i18n="@@browser.count">
-            {result.totalElements, plural,
-              =0 {No activities}
-              =1 {1 activity}
-              other {{{result.totalElements}} activities}
-            }
-          </p>
-          @if (result.content.length) {
-            <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              @for (activity of result.content; track activity.slug; let index = $index) {
-                <trv-activity-card
-                  class="animate-rise"
-                  [style.animation-delay.ms]="(index % 6) * 60"
-                  [activity]="activity"
-                />
-              }
-            </div>
-            <trv-pagination
-              class="mt-10 block"
-              [page]="result.page"
-              [totalPages]="result.totalPages"
-            />
-          } @else {
-            <trv-empty-state
-              i18n-title="@@browser.emptyTitle"
-              title="Nothing matches these filters yet"
-            >
-              <ng-container i18n="@@browser.emptyText"
-                >Try a different budget or duration, or clear the filters.</ng-container
-              >
-            </trv-empty-state>
+    <div class="mt-6">
+      @if (results.hasValue()) {
+        @let result = results.value();
+        <p class="mb-4 font-semibold" aria-live="polite" i18n="@@browser.count">
+          {result.totalElements, plural,
+            =0 {No activities}
+            =1 {1 activity}
+            other {{{result.totalElements}} activities}
           }
-        } @else if (results.error()) {
-          <trv-empty-state
-            icon="x"
-            i18n-title="@@browser.errorTitle"
-            title="We couldn't load activities"
-          >
-            <ng-container i18n="@@browser.errorText"
-              >Please refresh the page in a moment.</ng-container
-            >
-          </trv-empty-state>
-        } @else {
-          <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            @for (placeholder of [1, 2, 3, 4, 5, 6]; track placeholder) {
-              <trv-card-skeleton />
+        </p>
+        @if (result.content.length) {
+          <div class="space-y-5">
+            @for (activity of result.content; track activity.slug) {
+              <trv-trip-row [activity]="activity" />
             }
           </div>
+          <trv-pagination
+            class="mt-10 block"
+            [page]="result.page"
+            [totalPages]="result.totalPages"
+          />
+        } @else {
+          <trv-empty-state
+            i18n-title="@@browser.emptyTitle"
+            title="Nothing matches these filters yet"
+          >
+            <ng-container i18n="@@browser.emptyText"
+              >Try a different budget or duration, or clear the filters.</ng-container
+            >
+          </trv-empty-state>
         }
-      </div>
+      } @else if (results.error()) {
+        <trv-empty-state
+          icon="x"
+          i18n-title="@@browser.errorTitle"
+          title="We couldn't load activities"
+        >
+          <ng-container i18n="@@browser.errorText"
+            >Please refresh the page in a moment.</ng-container
+          >
+        </trv-empty-state>
+      } @else {
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          @for (placeholder of [1, 2, 3]; track placeholder) {
+            <trv-card-skeleton />
+          }
+        </div>
+      }
     </div>
   `,
 })

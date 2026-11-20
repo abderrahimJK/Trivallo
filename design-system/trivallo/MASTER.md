@@ -20,22 +20,32 @@ Token files are master-level only; `--page` overrides do not emit tokens.
 
 These were made on top of the generated output and win over anything below.
 
-- **Concept: "Aurora over the dunes".** The Aurora UI blue-orange pair reads as Majorelle blue
-  (Marrakech) meeting a Sahara sunset. Hero bands use a slow mesh gradient of primary, secondary
-  and accent with a layered dune silhouette.
-- **Storytelling landing:** home page chapters follow the trip, 01 Marrakech, 02 Ouarzazate,
-  03 Merzouga, each with its own chapter color (building intensity toward sunset), a mini CTA,
-  and a final climax CTA.
-  - Marrakech `#BE123C` (Red City), Ouarzazate `#B45309` (kasbah ochre), Merzouga `#C2410C` (dune).
-  - White text on all three passes 4.5:1.
-- **Text color rules:** `--color-primary` and `--color-accent` are never used for body text on
-  light backgrounds (contrast below 4.5:1). Links and text use `--color-foreground`; buttons use
-  the documented on-colors (`on-primary`, `on-accent`).
-- **Motion:** CSS only (no GSAP dependency): 400ms staggered fade-up on card grids, 200-250ms
-  hovers, 12s aurora loop. Everything is disabled under `prefers-reduced-motion`.
-- **Images:** `NgOptimizedImage` with `fill`; gradient placeholder in the chapter color when an
-  activity has no photo yet. Real, non-generic photography is required before launch (anti-pattern:
-  generic photos).
+**Revision 2 (2026-11-20): "Clean destination guide".** The first direction ("Aurora over the
+dunes": dark mesh-gradient heroes, Bebas Neue posters, storytelling chapters) was rejected by the
+product owner as still not good. The owner pointed at a leading small-group tour operator's
+destination pages as the reference for *structure and feel*. We take the patterns, not the brand,
+copy or assets:
+
+- **Feel:** white pages, near-black text, generous whitespace, photography does the talking.
+  One brand blue (Majorelle, `#1D4ED8`) for links and secondary actions, one terracotta CTA
+  (`#C2410C`) for the action that matters on each screen. No gradient decoration.
+- **Destination page pattern** (city pages and the all-trips page):
+  breadcrumb > title + intro > wide hero image > "Our {city} trips" with a horizontal
+  "Refine search" bar > list of trip cards > short FAQ.
+- **Trip card = key facts at a glance:** image, title, "duration · city" line, type and
+  category tags, and a price column ("From €X per adult" + "View trip"). Horizontal row on
+  tablet and up, stacked on phones. A compact grid variant is used on the home page.
+- **Home:** search hero, value props, "Where you can go" destination tiles, popular trips,
+  how it works, FAQ.
+- **Activity detail:** breadcrumb, title, tags, key-facts strip (duration, group size, days,
+  type), gallery, content sections, sticky price box (mobile: fixed bottom bar).
+- **City colors** (`shared/ui/city-chapter.ts`) now only tint image placeholders.
+- **Images:** `NgOptimizedImage` with `fill`. This layout depends on real photography: placeholders
+  are a stopgap until admin image upload ships (anti-pattern: generic stock photos).
+- **Motion:** CSS only, 150-250ms hover transitions, image zoom on card hover; nothing
+  decorative. All disabled under `prefers-reduced-motion`.
+- **Contrast:** foreground 17.4:1, muted-foreground 7.6:1, primary 6.7:1 and accent 5.2:1 on
+  white; white on primary 6.7:1 and on accent 5.2:1.
 
 ---
 
@@ -45,41 +55,34 @@ These were made on top of the generated output and win over anything below.
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#0EA5E9` | `--color-primary` |
-| On Primary | `#0F172A` | `--color-on-primary` |
-| Secondary | `#38BDF8` | `--color-secondary` |
-| On Secondary | `#0F172A` | `--color-on-secondary` |
-| Accent/CTA | `#EA580C` | `--color-accent` |
-| On Accent/CTA | `#000000` | `--color-on-accent` |
-| Background | `#F0F9FF` | `--color-background` |
-| Foreground | `#0C4A6E` | `--color-foreground` |
+| Primary | `#1D4ED8` | `--color-primary` |
+| On Primary | `#FFFFFF` | `--color-on-primary` |
+| Secondary | `#DBEAFE` | `--color-secondary` |
+| On Secondary | `#1E3A8A` | `--color-on-secondary` |
+| Accent/CTA | `#C2410C` | `--color-accent` |
+| On Accent/CTA | `#FFFFFF` | `--color-on-accent` |
+| Background | `#FFFFFF` | `--color-background` |
+| Foreground | `#1C1917` | `--color-foreground` |
 | Card | `#FFFFFF` | `--color-card` |
-| Card Foreground | `#0C4A6E` | `--color-card-foreground` |
-| Muted | `#E8F2F8` | `--color-muted` |
-| Muted Foreground | `#475569` | `--color-muted-foreground` |
-| Border | `#BAE6FD` | `--color-border` |
+| Card Foreground | `#1C1917` | `--color-card-foreground` |
+| Muted | `#F5F5F4` | `--color-muted` |
+| Muted Foreground | `#57534E` | `--color-muted-foreground` |
+| Border | `#E7E5E4` | `--color-border` |
 | Destructive | `#DC2626` | `--color-destructive` |
 | On Destructive | `#FFFFFF` | `--color-on-destructive` |
-| Ring | `#000000` | `--color-ring` |
+| Ring | `#1D4ED8` | `--color-ring` |
 
-**Color Notes:** Sky blue + adventure orange [Accent adjusted from #F97316]
+**Color Notes:** Revision 2: Majorelle blue for links and secondary actions, terracotta for the main CTA, neutrals for everything else.
 
 ### Typography
 
-> **Project decision (overrides the generated pairing):** the `--design-system` run matched
-> "Noto Sans Thai", a pairing for Thai-language sites, which does not fit an EN/FR Morocco
-> product. Replaced after a supplementary `--domain typography` search ("adventure bold expressive")
-> with the **Bold Statement** pairing: poster-style display type for a travel brand.
+> **Project decision (revision 2):** one family, **Inter** (400-800). Headings are Inter 700-800
+> with tight tracking, sentence case. Clean, legible, and lets photos lead. The generated run
+> suggested Inter / Playfair Display; the serif was dropped to keep the UI calm.
 
-- **Heading Font:** Bebas Neue (display only: hero, section and city titles; always uppercase by design)
-- **Body Font:** Source Sans 3 (body, UI, card and activity titles at 600-700)
-- **Mood:** bold, impactful, dramatic, modern, headlines (travel-poster feel)
-- **Google Fonts:** [Bebas Neue + Source Sans 3](https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;600;700&display=swap)
-
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;600;700&display=swap');
-```
+- **Heading Font:** Inter 700-800
+- **Body Font:** Inter 400-600
+- **Google Fonts:** [Inter](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)
 
 ### Spacing Variables
 
@@ -198,7 +201,7 @@ These were made on top of the generated output and win over anything below.
 
 ## Style Guidelines
 
-**Style:** Aurora UI
+**Style:** Clean destination guide (revision 2; generated: Aurora UI, rejected)
 
 **Keywords:** Vibrant gradients, smooth blend, Northern Lights effect, mesh gradient, luminous, atmospheric, abstract
 
@@ -208,7 +211,7 @@ These were made on top of the generated output and win over anything below.
 
 ### Page Pattern
 
-**Pattern Name:** Scroll-Triggered Storytelling
+**Pattern Name:** Destination page with filterable trip list (revision 2; generated: Scroll-Triggered Storytelling, rejected)
 
 - **Conversion Strategy:** Keep the narrative understandable without scroll-driven effects. Use progress indicator. Mobile: simplify animations. Keep DOM reading order complete; disable parallax and scroll-scrub under reduced motion. Pause scroll animation when offscreen or hidden and render each chapter in its final readable state under reduced motion.
 - **CTA Placement:** End of each chapter (mini) + Final climax CTA

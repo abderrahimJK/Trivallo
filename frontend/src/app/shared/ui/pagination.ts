@@ -16,7 +16,7 @@ import { Icon } from './icon';
       >
         @if (page() > 0) {
           <a
-            class="btn-ghost"
+            class="btn-outline"
             [routerLink]="[]"
             [queryParams]="{ page: page() - 1 || null }"
             queryParamsHandling="merge"
@@ -25,12 +25,12 @@ import { Icon } from './icon';
             <ng-container i18n="@@pagination.previous">Previous</ng-container>
           </a>
         }
-        <span class="text-sm font-semibold text-muted-foreground" i18n="@@pagination.status"
+        <span class="text-sm text-muted-foreground" i18n="@@pagination.status"
           >Page {{ displayPage() }} of {{ totalPages() }}</span
         >
         @if (page() < totalPages() - 1) {
           <a
-            class="btn-ghost"
+            class="btn-outline"
             [routerLink]="[]"
             [queryParams]="{ page: page() + 1 }"
             queryParamsHandling="merge"

@@ -15,13 +15,13 @@ interface Option<T> {
   template: `
     <button
       type="button"
-      class="btn-ghost w-full lg:hidden"
+      class="btn-outline w-full lg:hidden"
       [attr.aria-expanded]="open()"
       aria-controls="activity-filters"
       (click)="open.update((value) => !value)"
     >
       <trv-icon name="filters" class="size-4" />
-      <ng-container i18n="@@filters.toggle">Filters</ng-container>
+      <ng-container i18n="@@filters.toggle">Refine search</ng-container>
       @if (hasActiveFilters()) {
         <span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>
       }
@@ -31,7 +31,7 @@ interface Option<T> {
       id="activity-filters"
       i18n-aria-label="@@filters.label"
       aria-label="Filter activities"
-      class="mt-3 space-y-4 rounded-2xl border border-border bg-card p-5 shadow-sm lg:mt-0 lg:block"
+      class="mt-3 grid gap-4 rounded-xl border border-border bg-muted p-4 sm:grid-cols-2 lg:mt-0 lg:grid lg:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] lg:items-end"
       [class.hidden]="!open()"
       (submit)="$event.preventDefault()"
     >
@@ -103,7 +103,7 @@ interface Option<T> {
       @if (hasActiveFilters()) {
         <button
           type="button"
-          class="inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-foreground underline decoration-accent decoration-2 underline-offset-4 transition-colors duration-200 hover:text-destructive"
+          class="link inline-flex min-h-11 items-center gap-1.5"
           (click)="clear.emit()"
           i18n="@@filters.clear"
         >

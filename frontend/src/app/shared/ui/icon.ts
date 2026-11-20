@@ -32,6 +32,7 @@ const ICONS: Record<string, Shape[]> = {
   x: [{ type: 'path', d: 'M6 6l12 12M18 6L6 18' }],
   'chevron-left': [{ type: 'path', d: 'M15 6l-6 6 6 6' }],
   'chevron-right': [{ type: 'path', d: 'M9 6l6 6-6 6' }],
+  'chevron-down': [{ type: 'path', d: 'M6 9l6 6 6-6' }],
   'arrow-right': [{ type: 'path', d: 'M5 12h14M13 6l6 6-6 6' }],
   globe: [
     { type: 'circle', cx: 12, cy: 12, r: 9 },
