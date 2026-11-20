@@ -1,0 +1,16 @@
+# Build output
+target/
+node_modules/
+dist/
+.angular/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Local secrets
+.env
+
+# OS
+.DS_Store
