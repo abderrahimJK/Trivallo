@@ -13,42 +13,42 @@ interface NavLink {
   imports: [RouterLink, RouterLinkActive, LanguageSwitcher, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="sticky top-0 z-30 border-b border-sand-200/80 bg-sand-50/90 backdrop-blur">
+    <header class="sticky top-0 z-30 bg-foreground/95 text-white backdrop-blur">
       <div class="container-page flex h-16 items-center justify-between gap-4">
         <a
           routerLink="/"
-          class="font-display text-2xl font-semibold text-ink-900"
+          class="font-display flex min-h-11 items-center text-3xl tracking-widest"
           (click)="menuOpen.set(false)"
         >
-          Trivallo<span class="text-terracotta-500">.</span>
+          Trivallo<span class="text-accent">.</span>
         </a>
 
         <nav
-          class="hidden items-center gap-6 md:flex"
+          class="hidden items-center gap-1 md:flex"
           i18n-aria-label="@@header.navLabel"
           aria-label="Main"
         >
           @for (link of links; track link.label) {
             <a
               [routerLink]="link.commands"
-              routerLinkActive="text-teal-700"
-              class="text-sm font-semibold text-ink-700 hover:text-teal-700"
+              routerLinkActive="!text-white after:scale-x-100"
+              class="relative flex min-h-11 items-center px-3 text-sm font-semibold text-white/80 transition-colors duration-200 after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-white hover:after:scale-x-100"
               >{{ link.label }}</a
             >
           }
         </nav>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
           <trv-language-switcher />
           <button
             type="button"
-            class="rounded-full p-2 text-ink-700 hover:bg-sand-100 md:hidden"
+            class="flex size-11 items-center justify-center rounded-full text-white transition-colors duration-200 hover:bg-white/10 md:hidden"
             [attr.aria-expanded]="menuOpen()"
             aria-controls="mobile-menu"
             (click)="menuOpen.update((open) => !open)"
           >
             <span class="sr-only" i18n="@@header.menu">Menu</span>
-            <trv-icon [name]="menuOpen() ? 'x' : 'menu'" class="size-5" />
+            <trv-icon [name]="menuOpen() ? 'x' : 'menu'" class="size-6" />
           </button>
         </div>
       </div>
@@ -56,15 +56,16 @@ interface NavLink {
       @if (menuOpen()) {
         <nav
           id="mobile-menu"
-          class="border-t border-sand-200 bg-sand-50 md:hidden"
+          class="border-t border-white/10 md:hidden"
           i18n-aria-label="@@header.navLabel"
           aria-label="Main"
         >
-          <div class="container-page flex flex-col py-2">
+          <div class="container-page flex flex-col py-3">
             @for (link of links; track link.label) {
               <a
                 [routerLink]="link.commands"
-                class="py-3 text-base font-semibold text-ink-700"
+                routerLinkActive="text-accent"
+                class="font-display flex min-h-12 items-center text-3xl tracking-wide"
                 (click)="menuOpen.set(false)"
                 >{{ link.label }}</a
               >

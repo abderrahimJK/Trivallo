@@ -15,18 +15,23 @@ interface Option<T> {
   template: `
     <button
       type="button"
-      class="btn-secondary w-full lg:hidden"
+      class="btn-ghost w-full lg:hidden"
       [attr.aria-expanded]="open()"
       aria-controls="activity-filters"
       (click)="open.update((value) => !value)"
     >
       <trv-icon name="filters" class="size-4" />
       <ng-container i18n="@@filters.toggle">Filters</ng-container>
+      @if (hasActiveFilters()) {
+        <span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>
+      }
     </button>
 
     <form
       id="activity-filters"
-      class="mt-3 space-y-4 rounded-[var(--radius-card)] bg-white p-5 shadow-[var(--shadow-card)] lg:mt-0 lg:block"
+      i18n-aria-label="@@filters.label"
+      aria-label="Filter activities"
+      class="mt-3 space-y-4 rounded-2xl border border-border bg-card p-5 shadow-sm lg:mt-0 lg:block"
       [class.hidden]="!open()"
       (submit)="$event.preventDefault()"
     >
@@ -98,7 +103,7 @@ interface Option<T> {
       @if (hasActiveFilters()) {
         <button
           type="button"
-          class="text-sm font-semibold text-teal-700 hover:text-teal-800"
+          class="inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-foreground underline decoration-accent decoration-2 underline-offset-4 transition-colors duration-200 hover:text-destructive"
           (click)="clear.emit()"
           i18n="@@filters.clear"
         >

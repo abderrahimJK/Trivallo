@@ -3,15 +3,15 @@
   <file id="ngi18n" original="ng.template">
     <unit id="activities.title">
       <notes>
-        <note category="location">src/app/features/activities/activities-page.ts:12,13</note>
+        <note category="location">src/app/features/activities/activities-page.ts:16,18</note>
       </notes>
       <segment>
-        <source>Excursions and activities</source>
+        <source> Excursions and activities </source>
       </segment>
     </unit>
     <unit id="activities.subtitle">
       <notes>
-        <note category="location">src/app/features/activities/activities-page.ts:14,17</note>
+        <note category="location">src/app/features/activities/activities-page.ts:19,22</note>
       </notes>
       <segment>
         <source> Desert nights, mountain day trips, balloon flights and cooking classes across Marrakech, Ouarzazate and Merzouga. </source>
@@ -19,7 +19,7 @@
     </unit>
     <unit id="activities.seoTitle">
       <notes>
-        <note category="location">src/app/features/activities/activities-page.ts:45</note>
+        <note category="location">src/app/features/activities/activities-page.ts:54</note>
       </notes>
       <segment>
         <source>All excursions and activities</source>
@@ -27,7 +27,7 @@
     </unit>
     <unit id="activities.seoDescription">
       <notes>
-        <note category="location">src/app/features/activities/activities-page.ts:46</note>
+        <note category="location">src/app/features/activities/activities-page.ts:55</note>
       </notes>
       <segment>
         <source>Compare and book excursions and activities in Marrakech, Ouarzazate and Merzouga, with prices in euros.</source>
@@ -55,7 +55,7 @@
     </unit>
     <unit id="browser.emptyTitle">
       <notes>
-        <note category="location">src/app/features/activities/activity-browser.ts:67,69</note>
+        <note category="location">src/app/features/activities/activity-browser.ts:71,73</note>
       </notes>
       <segment>
         <source>Nothing matches these filters yet</source>
@@ -63,7 +63,7 @@
     </unit>
     <unit id="browser.emptyText">
       <notes>
-        <note category="location">src/app/features/activities/activity-browser.ts:70,72</note>
+        <note category="location">src/app/features/activities/activity-browser.ts:74,76</note>
       </notes>
       <segment>
         <source>Try a different budget or duration, or clear the filters.</source>
@@ -71,7 +71,7 @@
     </unit>
     <unit id="browser.errorTitle">
       <notes>
-        <note category="location">src/app/features/activities/activity-browser.ts:78,80</note>
+        <note category="location">src/app/features/activities/activity-browser.ts:82,84</note>
       </notes>
       <segment>
         <source>We couldn&apos;t load activities</source>
@@ -79,7 +79,7 @@
     </unit>
     <unit id="browser.errorText">
       <notes>
-        <note category="location">src/app/features/activities/activity-browser.ts:81,83</note>
+        <note category="location">src/app/features/activities/activity-browser.ts:85,87</note>
       </notes>
       <segment>
         <source>Please refresh the page in a moment.</source>
@@ -93,9 +93,17 @@
         <source>Filters</source>
       </segment>
     </unit>
+    <unit id="filters.label">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:33,34</note>
+      </notes>
+      <segment>
+        <source>Filter activities</source>
+      </segment>
+    </unit>
     <unit id="filters.city">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:35,36</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:40,41</note>
       </notes>
       <segment>
         <source>City</source>
@@ -103,7 +111,7 @@
     </unit>
     <unit id="filters.anyCity">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:37,38</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:42,43</note>
       </notes>
       <segment>
         <source>Any city</source>
@@ -111,7 +119,7 @@
     </unit>
     <unit id="filters.category">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:48,49</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:53,54</note>
       </notes>
       <segment>
         <source>Experience</source>
@@ -119,7 +127,7 @@
     </unit>
     <unit id="filters.anyCategory">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:50,51</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:55,56</note>
       </notes>
       <segment>
         <source>Any experience</source>
@@ -127,7 +135,7 @@
     </unit>
     <unit id="filters.type">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:60,61</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:65,66</note>
       </notes>
       <segment>
         <source>Type</source>
@@ -135,7 +143,7 @@
     </unit>
     <unit id="filters.maxPrice">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:71,72</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:76,77</note>
       </notes>
       <segment>
         <source>Budget per adult</source>
@@ -143,7 +151,7 @@
     </unit>
     <unit id="filters.duration">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:85,86</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:90,91</note>
       </notes>
       <segment>
         <source>Duration</source>
@@ -151,7 +159,7 @@
     </unit>
     <unit id="filters.clear">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:105,107</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:110,112</note>
       </notes>
       <segment>
         <source> Clear filters </source>
@@ -159,7 +167,7 @@
     </unit>
     <unit id="filters.anyType">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:125</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:130</note>
       </notes>
       <segment>
         <source>Excursions and activities</source>
@@ -167,7 +175,7 @@
     </unit>
     <unit id="filters.excursion">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:126</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:131</note>
       </notes>
       <segment>
         <source>Excursions</source>
@@ -175,7 +183,7 @@
     </unit>
     <unit id="filters.activity">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:127</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:132</note>
       </notes>
       <segment>
         <source>Activities</source>
@@ -183,7 +191,7 @@
     </unit>
     <unit id="filters.anyPrice">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:131</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:136</note>
       </notes>
       <segment>
         <source>Any budget</source>
@@ -191,7 +199,7 @@
     </unit>
     <unit id="filters.price50">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:132</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:137</note>
       </notes>
       <segment>
         <source>Up to €50</source>
@@ -199,7 +207,7 @@
     </unit>
     <unit id="filters.price100">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:133</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:138</note>
       </notes>
       <segment>
         <source>Up to €100</source>
@@ -207,7 +215,7 @@
     </unit>
     <unit id="filters.price200">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:134</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:139</note>
       </notes>
       <segment>
         <source>Up to €200</source>
@@ -215,7 +223,7 @@
     </unit>
     <unit id="filters.anyDuration">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:138</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:143</note>
       </notes>
       <segment>
         <source>Any duration</source>
@@ -223,7 +231,7 @@
     </unit>
     <unit id="filters.duration4h">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:139</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:144</note>
       </notes>
       <segment>
         <source>Up to 4 hours</source>
@@ -231,7 +239,7 @@
     </unit>
     <unit id="filters.duration8h">
       <notes>
-        <note category="location">src/app/features/activities/activity-filter-panel.ts:140</note>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:145</note>
       </notes>
       <segment>
         <source>Up to a full day</source>
@@ -239,7 +247,7 @@
     </unit>
     <unit id="detail.breadcrumb">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:26,28</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:41,42</note>
       </notes>
       <segment>
         <source>Breadcrumb</source>
@@ -247,7 +255,7 @@
     </unit>
     <unit id="detail.home">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:29,30</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:49,50</note>
       </notes>
       <segment>
         <source>Home</source>
@@ -255,7 +263,7 @@
     </unit>
     <unit id="detail.maxGroup">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:56,57</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:86,87</note>
       </notes>
       <segment>
         <source>Up to <ph id="0" equiv="INTERPOLATION" disp="{{ item.maxGroupSize }}"/> people</source>
@@ -263,15 +271,15 @@
     </unit>
     <unit id="detail.about">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:92,93</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:134,135</note>
       </notes>
       <segment>
-        <source>About this experience</source>
+        <source> About this experience </source>
       </segment>
     </unit>
     <unit id="detail.itinerary">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:98,99</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:143,145</note>
       </notes>
       <segment>
         <source>Itinerary</source>
@@ -279,7 +287,7 @@
     </unit>
     <unit id="detail.included">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:106,107</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:155,156</note>
       </notes>
       <segment>
         <source>Included</source>
@@ -287,23 +295,23 @@
     </unit>
     <unit id="detail.notIncluded">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:118,119</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:173,174</note>
       </notes>
       <segment>
-        <source>Not included</source>
+        <source> Not included </source>
       </segment>
     </unit>
     <unit id="detail.meetingPoint">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:132,133</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:194,195</note>
       </notes>
       <segment>
-        <source>Meeting point</source>
+        <source> Meeting point </source>
       </segment>
     </unit>
     <unit id="detail.openMap">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:144,145</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:207,208</note>
       </notes>
       <segment>
         <source>Open in Maps</source>
@@ -311,7 +319,7 @@
     </unit>
     <unit id="detail.tripadvisor">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:154,155</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:218,219</note>
       </notes>
       <segment>
         <source>Read reviews on TripAdvisor</source>
@@ -319,8 +327,8 @@
     </unit>
     <unit id="detail.priceFrom">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:164</note>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:194,195</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:231</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:269,271</note>
       </notes>
       <segment>
         <source>From</source>
@@ -328,7 +336,7 @@
     </unit>
     <unit id="detail.perAdult">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:167,169</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:234,236</note>
       </notes>
       <segment>
         <source>per adult</source>
@@ -336,7 +344,7 @@
     </unit>
     <unit id="detail.childPrice">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:171,172</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:238,239</note>
       </notes>
       <segment>
         <source> Children: <ph id="0" equiv="INTERPOLATION" disp="{{ item.priceChildEur | currency: &apos;EUR&apos; }}"/> </source>
@@ -344,8 +352,8 @@
     </unit>
     <unit id="detail.requestBooking">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:179,180</note>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:198,200</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:246,247</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:276,278</note>
       </notes>
       <segment>
         <source> Request booking </source>
@@ -353,7 +361,7 @@
     </unit>
     <unit id="detail.bookingSoon">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:182,183</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:252,253</note>
       </notes>
       <segment>
         <source> Booking requests open very soon. No payment online: you pay on the day. </source>
@@ -361,23 +369,40 @@
     </unit>
     <unit id="detail.everyDay">
       <notes>
-        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:219</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:297</note>
       </notes>
       <segment>
         <source>Every day</source>
       </segment>
     </unit>
-    <unit id="city.activitiesTitle">
+    <unit id="chapter.label">
       <notes>
-        <note category="location">src/app/features/city/city-page.ts:39,40</note>
+        <note category="location">src/app/features/city/city-page.ts:46,47</note>
+        <note category="location">src/app/features/home/home-chapter.ts:35,36</note>
       </notes>
       <segment>
-        <source>Things to do in <ph id="0" equiv="INTERPOLATION" disp="{{ item.name }}"/></source>
+        <source>Chapter <ph id="0" equiv="INTERPOLATION" disp="{{ chapter().number }}"/></source>
+      </segment>
+    </unit>
+    <unit id="city.activitiesTitle">
+      <notes>
+        <note category="location">src/app/features/city/city-page.ts:62,64</note>
+      </notes>
+      <segment>
+        <source> Things to do in <ph id="0" equiv="INTERPOLATION" disp="{{ item.name }}"/> </source>
+      </segment>
+    </unit>
+    <unit id="chapter.explore">
+      <notes>
+        <note category="location">src/app/features/home/home-chapter.ts:48,49</note>
+      </notes>
+      <segment>
+        <source>Explore <ph id="0" equiv="INTERPOLATION" disp="{{ item.name }}"/></source>
       </segment>
     </unit>
     <unit id="home.eyebrow">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:30,32</note>
+        <note category="location">src/app/features/home/home-page.ts:29,31</note>
       </notes>
       <segment>
         <source> Marrakech · Ouarzazate · Merzouga </source>
@@ -385,15 +410,15 @@
     </unit>
     <unit id="home.title">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:33,34</note>
+        <note category="location">src/app/features/home/home-page.ts:35,37</note>
       </notes>
       <segment>
-        <source> The best of Morocco, from the medina to the dunes </source>
+        <source> From the medina to the dunes </source>
       </segment>
     </unit>
     <unit id="home.subtitle">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:36,38</note>
+        <note category="location">src/app/features/home/home-page.ts:41,43</note>
       </notes>
       <segment>
         <source> Hand-picked excursions and activities with local guides. Send a request, we confirm it, you pay on the day. </source>
@@ -401,7 +426,7 @@
     </unit>
     <unit id="home.searchCity">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:45,46</note>
+        <note category="location">src/app/features/home/home-page.ts:50,51</note>
       </notes>
       <segment>
         <source>Where</source>
@@ -409,7 +434,7 @@
     </unit>
     <unit id="home.anyCity">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:47,48</note>
+        <note category="location">src/app/features/home/home-page.ts:52,53</note>
       </notes>
       <segment>
         <source>Any city</source>
@@ -417,7 +442,7 @@
     </unit>
     <unit id="home.searchCategory">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:54,55</note>
+        <note category="location">src/app/features/home/home-page.ts:59,60</note>
       </notes>
       <segment>
         <source>What</source>
@@ -425,7 +450,7 @@
     </unit>
     <unit id="home.anyCategory">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:56,57</note>
+        <note category="location">src/app/features/home/home-page.ts:61,62</note>
       </notes>
       <segment>
         <source>Any experience</source>
@@ -433,55 +458,79 @@
     </unit>
     <unit id="home.searchButton">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:63,64</note>
+        <note category="location">src/app/features/home/home-page.ts:68,69</note>
       </notes>
       <segment>
         <source>Search</source>
       </segment>
     </unit>
-    <unit id="home.citiesTitle">
-      <notes>
-        <note category="location">src/app/features/home/home-page.ts:82,84</note>
-      </notes>
-      <segment>
-        <source>Where to go</source>
-      </segment>
-    </unit>
-    <unit id="home.categoriesTitle">
-      <notes>
-        <note category="location">src/app/features/home/home-page.ts:94,95</note>
-      </notes>
-      <segment>
-        <source>What do you feel like?</source>
-      </segment>
-    </unit>
-    <unit id="home.latestTitle">
-      <notes>
-        <note category="location">src/app/features/home/home-page.ts:113,115</note>
-      </notes>
-      <segment>
-        <source>New on Trivallo</source>
-      </segment>
-    </unit>
-    <unit id="home.seeAll">
-      <notes>
-        <note category="location">src/app/features/home/home-page.ts:118,119</note>
-      </notes>
-      <segment>
-        <source>See all</source>
-      </segment>
-    </unit>
     <unit id="home.howTitle">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:137,138</note>
+        <note category="location">src/app/features/home/home-page.ts:78,79</note>
       </notes>
       <segment>
         <source>How it works</source>
       </segment>
     </unit>
+    <unit id="home.chaptersEyebrow">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:97,99</note>
+      </notes>
+      <segment>
+        <source>Your journey</source>
+      </segment>
+    </unit>
+    <unit id="home.chaptersTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:103,105</note>
+      </notes>
+      <segment>
+        <source> Three cities, one story </source>
+      </segment>
+    </unit>
+    <unit id="home.chaptersText">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:106,108</note>
+      </notes>
+      <segment>
+        <source> Start in the red city, cross the High Atlas to the kasbahs, end the night under the Saharan sky. </source>
+      </segment>
+    </unit>
+    <unit id="home.categoriesTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:125,127</note>
+      </notes>
+      <segment>
+        <source> What do you feel like? </source>
+      </segment>
+    </unit>
+    <unit id="home.ctaTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:149,151</note>
+      </notes>
+      <segment>
+        <source> Your Moroccan story starts here </source>
+      </segment>
+    </unit>
+    <unit id="home.ctaText">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:152,154</note>
+      </notes>
+      <segment>
+        <source> No payment online. Send a request, we confirm with the guide, you pay on the day. </source>
+      </segment>
+    </unit>
+    <unit id="home.ctaButton">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:155,156</note>
+      </notes>
+      <segment>
+        <source>Browse all activities</source>
+      </segment>
+    </unit>
     <unit id="home.step1Title">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:169</note>
+        <note category="location">src/app/features/home/home-page.ts:183</note>
       </notes>
       <segment>
         <source>Pick an experience</source>
@@ -489,7 +538,7 @@
     </unit>
     <unit id="home.step1Text">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:170</note>
+        <note category="location">src/app/features/home/home-page.ts:184</note>
       </notes>
       <segment>
         <source>Browse tours and activities chosen with local guides.</source>
@@ -497,7 +546,7 @@
     </unit>
     <unit id="home.step2Title">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:173</note>
+        <note category="location">src/app/features/home/home-page.ts:187</note>
       </notes>
       <segment>
         <source>Send a request</source>
@@ -505,7 +554,7 @@
     </unit>
     <unit id="home.step2Text">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:174</note>
+        <note category="location">src/app/features/home/home-page.ts:188</note>
       </notes>
       <segment>
         <source>Choose a date and group size. No payment online.</source>
@@ -513,7 +562,7 @@
     </unit>
     <unit id="home.step3Title">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:177</note>
+        <note category="location">src/app/features/home/home-page.ts:191</note>
       </notes>
       <segment>
         <source>We confirm, you go</source>
@@ -521,7 +570,7 @@
     </unit>
     <unit id="home.step3Text">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:178</note>
+        <note category="location">src/app/features/home/home-page.ts:192</note>
       </notes>
       <segment>
         <source>We confirm by email with the guide. You pay on the day.</source>
@@ -529,7 +578,7 @@
     </unit>
     <unit id="home.seoTitle">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:184</note>
+        <note category="location">src/app/features/home/home-page.ts:198</note>
       </notes>
       <segment>
         <source>Excursions and activities in Morocco</source>
@@ -537,7 +586,7 @@
     </unit>
     <unit id="home.seoDescription">
       <notes>
-        <note category="location">src/app/features/home/home-page.ts:185</note>
+        <note category="location">src/app/features/home/home-page.ts:199</note>
       </notes>
       <segment>
         <source>Book the best excursions and activities in Marrakech, Ouarzazate and Merzouga: desert tours, hot-air balloons, day trips and cooking classes.</source>
@@ -545,15 +594,15 @@
     </unit>
     <unit id="notFound.title">
       <notes>
-        <note category="location">src/app/features/not-found/not-found-view.ts:14,15</note>
+        <note category="location">src/app/features/not-found/not-found-view.ts:25,27</note>
       </notes>
       <segment>
-        <source>This page got lost in the dunes</source>
+        <source> This page got lost in the dunes </source>
       </segment>
     </unit>
     <unit id="notFound.text">
       <notes>
-        <note category="location">src/app/features/not-found/not-found-view.ts:16,18</note>
+        <note category="location">src/app/features/not-found/not-found-view.ts:28,30</note>
       </notes>
       <segment>
         <source> The page you are looking for does not exist or is no longer available. </source>
@@ -561,7 +610,7 @@
     </unit>
     <unit id="notFound.cta">
       <notes>
-        <note category="location">src/app/features/not-found/not-found-view.ts:19,22</note>
+        <note category="location">src/app/features/not-found/not-found-view.ts:31,34</note>
       </notes>
       <segment>
         <source>Browse activities</source>
@@ -569,7 +618,7 @@
     </unit>
     <unit id="notFound.seoTitle">
       <notes>
-        <note category="location">src/app/features/not-found/not-found-view.ts:30</note>
+        <note category="location">src/app/features/not-found/not-found-view.ts:44</note>
       </notes>
       <segment>
         <source>Page not found</source>
@@ -577,7 +626,7 @@
     </unit>
     <unit id="footer.tagline">
       <notes>
-        <note category="location">src/app/layout/site-footer.ts:14,16</note>
+        <note category="location">src/app/layout/site-footer.ts:19,20</note>
       </notes>
       <segment>
         <source> Hand-picked excursions and activities in Marrakech, Ouarzazate and Merzouga. </source>
@@ -585,23 +634,23 @@
     </unit>
     <unit id="footer.destinations">
       <notes>
-        <note category="location">src/app/layout/site-footer.ts:22,24</note>
+        <note category="location">src/app/layout/site-footer.ts:23,24</note>
       </notes>
       <segment>
-        <source> Destinations </source>
+        <source>Destinations</source>
       </segment>
     </unit>
     <unit id="footer.howItWorks">
       <notes>
-        <note category="location">src/app/layout/site-footer.ts:35,37</note>
+        <note category="location">src/app/layout/site-footer.ts:37,38</note>
       </notes>
       <segment>
-        <source> How it works </source>
+        <source>How it works</source>
       </segment>
     </unit>
     <unit id="footer.howItWorksText">
       <notes>
-        <note category="location">src/app/layout/site-footer.ts:38,40</note>
+        <note category="location">src/app/layout/site-footer.ts:39,41</note>
       </notes>
       <segment>
         <source> Send a booking request, our team confirms it with the local guide, and you pay on the day. </source>
@@ -626,7 +675,7 @@
     </unit>
     <unit id="header.allActivities">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:82</note>
+        <note category="location">src/app/layout/site-header.ts:83</note>
       </notes>
       <segment>
         <source>All activities</source>
@@ -634,18 +683,10 @@
     </unit>
     <unit id="activityCard.from">
       <notes>
-        <note category="location">src/app/shared/ui/activity-card.ts:47,48</note>
+        <note category="location">src/app/shared/ui/activity-card.ts:32,33</note>
       </notes>
       <segment>
         <source>from</source>
-      </segment>
-    </unit>
-    <unit id="cityCard.explore">
-      <notes>
-        <note category="location">src/app/shared/ui/city-card.ts:33,34</note>
-      </notes>
-      <segment>
-        <source>Explore</source>
       </segment>
     </unit>
     <unit id="pagination.label">

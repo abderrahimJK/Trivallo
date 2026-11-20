@@ -14,18 +14,18 @@ import { Icon } from '../shared/ui/icon';
   imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="flex items-center gap-1 text-sm">
-      <trv-icon name="globe" class="size-4 text-ink-500" />
+    <div class="flex items-center gap-0.5 text-sm">
+      <trv-icon name="globe" class="mr-1 size-4 text-white/70" />
       @for (locale of locales; track locale.code) {
         @if (locale.code === currentLocale) {
           <span
-            class="rounded-full bg-sand-200 px-2 py-0.5 font-semibold uppercase"
+            class="flex size-9 items-center justify-center rounded-full bg-white font-bold text-foreground uppercase"
             aria-current="true"
             >{{ locale.code }}</span
           >
         } @else {
           <a
-            class="rounded-full px-2 py-0.5 font-semibold text-ink-500 uppercase hover:text-ink-900"
+            class="flex size-11 items-center justify-center rounded-full font-bold text-white/80 uppercase transition-colors duration-200 hover:bg-white/10 hover:text-white"
             [href]="'/' + locale.code + currentPath()"
             [attr.hreflang]="locale.code"
             [attr.lang]="locale.code"

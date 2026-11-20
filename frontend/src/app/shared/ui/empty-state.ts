@@ -7,11 +7,13 @@ import { Icon } from './icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
-      class="flex flex-col items-center gap-3 rounded-[var(--radius-card)] border border-dashed border-sand-300 px-6 py-12 text-center"
+      class="flex flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-border bg-card px-6 py-14 text-center"
     >
-      <trv-icon [name]="icon()" class="size-10 text-terracotta-500" />
-      <p class="font-semibold text-ink-900">{{ title() }}</p>
-      <div class="max-w-md text-sm text-ink-500"><ng-content /></div>
+      <span class="flex size-16 items-center justify-center rounded-full bg-muted">
+        <trv-icon [name]="icon()" class="size-8 text-foreground" />
+      </span>
+      <p class="font-display text-3xl text-foreground">{{ title() }}</p>
+      <div class="max-w-md text-muted-foreground"><ng-content /></div>
     </div>
   `,
 })

@@ -28,7 +28,7 @@ const PAGE_SIZE = 12;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="grid gap-6 lg:grid-cols-[260px_1fr]">
-      <aside class="lg:sticky lg:top-24 lg:self-start">
+      <aside class="lg:sticky lg:top-20 lg:self-start">
         <trv-activity-filter-panel
           [filters]="filters()"
           [cities]="cities.value() ?? []"
@@ -43,7 +43,7 @@ const PAGE_SIZE = 12;
       <div>
         @if (results.hasValue()) {
           @let result = results.value();
-          <p class="mb-4 text-sm text-ink-500" i18n="@@browser.count">
+          <p class="eyebrow mb-4 text-muted-foreground" i18n="@@browser.count">
             {result.totalElements, plural,
               =0 {No activities}
               =1 {1 activity}
@@ -52,8 +52,12 @@ const PAGE_SIZE = 12;
           </p>
           @if (result.content.length) {
             <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              @for (activity of result.content; track activity.slug) {
-                <trv-activity-card [activity]="activity" />
+              @for (activity of result.content; track activity.slug; let index = $index) {
+                <trv-activity-card
+                  class="animate-rise"
+                  [style.animation-delay.ms]="(index % 6) * 60"
+                  [activity]="activity"
+                />
               }
             </div>
             <trv-pagination

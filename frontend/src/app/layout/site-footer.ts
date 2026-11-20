@@ -1,51 +1,59 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Dunes } from '../shared/ui/dunes';
 
 @Component({
   selector: 'trv-site-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, Dunes],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="mt-20 bg-ink-900 text-sand-100">
-      <div class="container-page grid gap-10 py-12 sm:grid-cols-3">
-        <div>
-          <p class="font-display text-2xl">Trivallo<span class="text-terracotta-400">.</span></p>
-          <p class="mt-3 max-w-xs text-sm text-sand-200/80" i18n="@@footer.tagline">
-            Hand-picked excursions and activities in Marrakech, Ouarzazate and Merzouga.
-          </p>
+    <footer class="mt-24 text-white">
+      <trv-dunes class="h-16 text-foreground sm:h-24" />
+      <div class="bg-foreground">
+        <div class="container-page grid gap-10 pt-6 pb-12 sm:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <p class="font-display text-6xl tracking-widest">
+              Trivallo<span class="text-accent">.</span>
+            </p>
+            <p class="mt-3 max-w-xs text-white/80" i18n="@@footer.tagline">
+              Hand-picked excursions and activities in Marrakech, Ouarzazate and Merzouga.
+            </p>
+          </div>
+          <div>
+            <p class="eyebrow text-white/70" i18n="@@footer.destinations">Destinations</p>
+            <ul class="mt-2">
+              @for (city of cities; track city.slug) {
+                <li>
+                  <a
+                    [routerLink]="['/cities', city.slug]"
+                    class="font-display flex min-h-11 items-center text-2xl tracking-wide transition-colors duration-200 hover:text-accent"
+                    >{{ city.name }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow text-white/70" i18n="@@footer.howItWorks">How it works</p>
+            <p class="mt-3 text-white/80" i18n="@@footer.howItWorksText">
+              Send a booking request, our team confirms it with the local guide, and you pay on the
+              day.
+            </p>
+          </div>
         </div>
-        <div>
-          <p
-            class="text-xs font-semibold tracking-wide text-sand-300 uppercase"
-            i18n="@@footer.destinations"
-          >
-            Destinations
-          </p>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li><a routerLink="/cities/marrakech" class="hover:text-white">Marrakech</a></li>
-            <li><a routerLink="/cities/ouarzazate" class="hover:text-white">Ouarzazate</a></li>
-            <li><a routerLink="/cities/merzouga" class="hover:text-white">Merzouga</a></li>
-          </ul>
+        <div class="border-t border-white/10">
+          <p class="container-page py-5 text-sm text-white/70">© {{ year }} Trivallo</p>
         </div>
-        <div>
-          <p
-            class="text-xs font-semibold tracking-wide text-sand-300 uppercase"
-            i18n="@@footer.howItWorks"
-          >
-            How it works
-          </p>
-          <p class="mt-3 text-sm text-sand-200/80" i18n="@@footer.howItWorksText">
-            Send a booking request, our team confirms it with the local guide, and you pay on the
-            day.
-          </p>
-        </div>
-      </div>
-      <div class="border-t border-white/10">
-        <p class="container-page py-5 text-xs text-sand-200/60">© {{ year }} Trivallo</p>
       </div>
     </footer>
   `,
 })
 export class SiteFooter {
   protected readonly year = new Date().getFullYear();
+
+  protected readonly cities = [
+    { slug: 'marrakech', name: 'Marrakech' },
+    { slug: 'ouarzazate', name: 'Ouarzazate' },
+    { slug: 'merzouga', name: 'Merzouga' },
+  ];
 }

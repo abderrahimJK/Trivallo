@@ -10,7 +10,13 @@ import {
   withEventReplay,
   withHttpTransferCacheOptions,
 } from '@angular/platform-browser';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withPreloading,
+} from '@angular/router';
 import { routes } from './app.routes';
 import { acceptLanguageInterceptor } from './core/http/accept-language.interceptor';
 import { apiOriginInterceptor } from './core/http/api-origin.interceptor';
@@ -25,6 +31,8 @@ export const appConfig: ApplicationConfig = {
       // Route params and query params arrive as component inputs.
       withComponentInputBinding(),
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
+      // Pages are small; fetch them all after first load so later navigation is instant.
+      withPreloading(PreloadAllModules),
     ),
     provideHttpClient(
       withFetch(),

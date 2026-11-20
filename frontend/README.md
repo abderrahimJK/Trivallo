@@ -46,6 +46,17 @@ src/app
 - **SSR:** API responses fetched on the server are embedded in the page and reused by the
   browser, so hydration makes no duplicate API calls. Unknown slugs return a real HTTP 404.
 
+## Design system
+
+The look comes from `design-system/trivallo/` at the repo root (`MASTER.md`, `tokens.css`,
+`tokens.json`), generated with the ui-ux-pro-max skill in `.claude/skills/`. Concept: "Aurora
+over the dunes" (Majorelle sky blue meets a Sahara sunset), Bebas Neue for display, Source Sans 3
+for text, one chapter color per city (`shared/ui/city-chapter.ts`).
+
+- Change a token in `design-system/trivallo/` first, then mirror it in `src/styles.css` (`@theme`).
+- Primary and accent never carry body text: they fail 4.5:1 on light backgrounds.
+- Motion is CSS only and switched off under `prefers-reduced-motion`.
+
 ## Translations
 
 Texts are marked with `i18n` attributes or `$localize` and use explicit ids (`@@home.title`).
