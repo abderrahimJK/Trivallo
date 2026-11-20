@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="ngi18n" original="ng.template">
+    <unit id="activities.title">
+      <notes>
+        <note category="location">src/app/features/activities/activities-page.ts:12,13</note>
+      </notes>
+      <segment>
+        <source>Excursions and activities</source>
+        <target>Excursions et activités</target>
+      </segment>
+    </unit>
+    <unit id="activities.subtitle">
+      <notes>
+        <note category="location">src/app/features/activities/activities-page.ts:14,17</note>
+      </notes>
+      <segment>
+        <source> Desert nights, mountain day trips, balloon flights and cooking classes across Marrakech, Ouarzazate and Merzouga. </source>
+        <target>Nuits dans le désert, excursions dans l&apos;Atlas, vols en montgolfière et cours de cuisine à Marrakech, Ouarzazate et Merzouga.</target>
+      </segment>
+    </unit>
+    <unit id="activities.seoTitle">
+      <notes>
+        <note category="location">src/app/features/activities/activities-page.ts:45</note>
+      </notes>
+      <segment>
+        <source>All excursions and activities</source>
+        <target>Toutes les excursions et activités</target>
+      </segment>
+    </unit>
+    <unit id="activities.seoDescription">
+      <notes>
+        <note category="location">src/app/features/activities/activities-page.ts:46</note>
+      </notes>
+      <segment>
+        <source>Compare and book excursions and activities in Marrakech, Ouarzazate and Merzouga, with prices in euros.</source>
+        <target>Comparez et réservez des excursions et activités à Marrakech, Ouarzazate et Merzouga, avec des prix en euros.</target>
+      </segment>
+    </unit>
+    <unit id="browser.count">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:47,53</note>
+      </notes>
+      <segment>
+        <source> <ph id="0" equiv="ICU" disp="{result.totalElements, plural,
+              =0 {No activities}
+              =1 {1 activity}
+              other {{{result.totalElements}} activities}
+            }" subFlows="7806962808520053626"/> </source>
+        <target> <ph id="0" equiv="ICU" disp="{result.totalElements, plural,
+              =0 {No activities}
+              =1 {1 activity}
+              other {{{result.totalElements}} activities}
+            }" subFlows="7806962808520053626"/> </target>
+      </segment>
+    </unit>
+    <unit id="3534341395604577595">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:47,50</note>
+      </notes>
+      <segment>
+        <source>{VAR_PLURAL, plural, =0 {No activities} =1 {1 activity} other {<ph id="0" equiv="INTERPOLATION"/> activities}}</source>
+        <target>{VAR_PLURAL, plural, =0 {Aucune activité} =1 {1 activité} other {<ph id="0" equiv="INTERPOLATION"/> activités}}</target>
+      </segment>
+    </unit>
+    <unit id="browser.emptyTitle">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:67,69</note>
+      </notes>
+      <segment>
+        <source>Nothing matches these filters yet</source>
+        <target>Aucune activité ne correspond à ces filtres</target>
+      </segment>
+    </unit>
+    <unit id="browser.emptyText">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:70,72</note>
+      </notes>
+      <segment>
+        <source>Try a different budget or duration, or clear the filters.</source>
+        <target>Essayez un autre budget ou une autre durée, ou effacez les filtres.</target>
+      </segment>
+    </unit>
+    <unit id="browser.errorTitle">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:78,80</note>
+      </notes>
+      <segment>
+        <source>We couldn&apos;t load activities</source>
+        <target>Impossible de charger les activités</target>
+      </segment>
+    </unit>
+    <unit id="browser.errorText">
+      <notes>
+        <note category="location">src/app/features/activities/activity-browser.ts:81,83</note>
+      </notes>
+      <segment>
+        <source>Please refresh the page in a moment.</source>
+        <target>Veuillez actualiser la page dans un instant.</target>
+      </segment>
+    </unit>
+    <unit id="filters.toggle">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:24,25</note>
+      </notes>
+      <segment>
+        <source>Filters</source>
+        <target>Filtres</target>
+      </segment>
+    </unit>
+    <unit id="filters.city">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:35,36</note>
+      </notes>
+      <segment>
+        <source>City</source>
+        <target>Ville</target>
+      </segment>
+    </unit>
+    <unit id="filters.anyCity">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:37,38</note>
+      </notes>
+      <segment>
+        <source>Any city</source>
+        <target>Toutes les villes</target>
+      </segment>
+    </unit>
+    <unit id="filters.category">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:48,49</note>
+      </notes>
+      <segment>
+        <source>Experience</source>
+        <target>Expérience</target>
+      </segment>
+    </unit>
+    <unit id="filters.anyCategory">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:50,51</note>
+      </notes>
+      <segment>
+        <source>Any experience</source>
+        <target>Toutes les expériences</target>
+      </segment>
+    </unit>
+    <unit id="filters.type">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:60,61</note>
+      </notes>
+      <segment>
+        <source>Type</source>
+        <target>Type</target>
+      </segment>
+    </unit>
+    <unit id="filters.maxPrice">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:71,72</note>
+      </notes>
+      <segment>
+        <source>Budget per adult</source>
+        <target>Budget par adulte</target>
+      </segment>
+    </unit>
+    <unit id="filters.duration">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:85,86</note>
+      </notes>
+      <segment>
+        <source>Duration</source>
+        <target>Durée</target>
+      </segment>
+    </unit>
+    <unit id="filters.clear">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:105,107</note>
+      </notes>
+      <segment>
+        <source> Clear filters </source>
+        <target>Effacer les filtres</target>
+      </segment>
+    </unit>
+    <unit id="filters.anyType">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:125</note>
+      </notes>
+      <segment>
+        <source>Excursions and activities</source>
+        <target>Excursions et activités</target>
+      </segment>
+    </unit>
+    <unit id="filters.excursion">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:126</note>
+      </notes>
+      <segment>
+        <source>Excursions</source>
+        <target>Excursions</target>
+      </segment>
+    </unit>
+    <unit id="filters.activity">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:127</note>
+      </notes>
+      <segment>
+        <source>Activities</source>
+        <target>Activités</target>
+      </segment>
+    </unit>
+    <unit id="filters.anyPrice">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:131</note>
+      </notes>
+      <segment>
+        <source>Any budget</source>
+        <target>Tous les budgets</target>
+      </segment>
+    </unit>
+    <unit id="filters.price50">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:132</note>
+      </notes>
+      <segment>
+        <source>Up to €50</source>
+        <target>Jusqu&apos;à 50 €</target>
+      </segment>
+    </unit>
+    <unit id="filters.price100">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:133</note>
+      </notes>
+      <segment>
+        <source>Up to €100</source>
+        <target>Jusqu&apos;à 100 €</target>
+      </segment>
+    </unit>
+    <unit id="filters.price200">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:134</note>
+      </notes>
+      <segment>
+        <source>Up to €200</source>
+        <target>Jusqu&apos;à 200 €</target>
+      </segment>
+    </unit>
+    <unit id="filters.anyDuration">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:138</note>
+      </notes>
+      <segment>
+        <source>Any duration</source>
+        <target>Toutes les durées</target>
+      </segment>
+    </unit>
+    <unit id="filters.duration4h">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:139</note>
+      </notes>
+      <segment>
+        <source>Up to 4 hours</source>
+        <target>Jusqu&apos;à 4 heures</target>
+      </segment>
+    </unit>
+    <unit id="filters.duration8h">
+      <notes>
+        <note category="location">src/app/features/activities/activity-filter-panel.ts:140</note>
+      </notes>
+      <segment>
+        <source>Up to a full day</source>
+        <target>Jusqu&apos;à une journée</target>
+      </segment>
+    </unit>
+    <unit id="detail.breadcrumb">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:26,28</note>
+      </notes>
+      <segment>
+        <source>Breadcrumb</source>
+        <target>Fil d&apos;Ariane</target>
+      </segment>
+    </unit>
+    <unit id="detail.home">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:29,30</note>
+      </notes>
+      <segment>
+        <source>Home</source>
+        <target>Accueil</target>
+      </segment>
+    </unit>
+    <unit id="detail.maxGroup">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:56,57</note>
+      </notes>
+      <segment>
+        <source>Up to <ph id="0" equiv="INTERPOLATION" disp="{{ item.maxGroupSize }}"/> people</source>
+        <target>Jusqu'à <ph id="0" equiv="INTERPOLATION" disp="{{ item.maxGroupSize }}"/> personnes</target>
+      </segment>
+    </unit>
+    <unit id="detail.about">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:92,93</note>
+      </notes>
+      <segment>
+        <source>About this experience</source>
+        <target>À propos de l&apos;expérience</target>
+      </segment>
+    </unit>
+    <unit id="detail.itinerary">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:98,99</note>
+      </notes>
+      <segment>
+        <source>Itinerary</source>
+        <target>Programme</target>
+      </segment>
+    </unit>
+    <unit id="detail.included">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:106,107</note>
+      </notes>
+      <segment>
+        <source>Included</source>
+        <target>Inclus</target>
+      </segment>
+    </unit>
+    <unit id="detail.notIncluded">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:118,119</note>
+      </notes>
+      <segment>
+        <source>Not included</source>
+        <target>Non inclus</target>
+      </segment>
+    </unit>
+    <unit id="detail.meetingPoint">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:132,133</note>
+      </notes>
+      <segment>
+        <source>Meeting point</source>
+        <target>Point de rendez-vous</target>
+      </segment>
+    </unit>
+    <unit id="detail.openMap">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:144,145</note>
+      </notes>
+      <segment>
+        <source>Open in Maps</source>
+        <target>Ouvrir dans Maps</target>
+      </segment>
+    </unit>
+    <unit id="detail.tripadvisor">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:154,155</note>
+      </notes>
+      <segment>
+        <source>Read reviews on TripAdvisor</source>
+        <target>Lire les avis sur TripAdvisor</target>
+      </segment>
+    </unit>
+    <unit id="detail.priceFrom">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:164</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:194,195</note>
+      </notes>
+      <segment>
+        <source>From</source>
+        <target>À partir de</target>
+      </segment>
+    </unit>
+    <unit id="detail.perAdult">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:167,169</note>
+      </notes>
+      <segment>
+        <source>per adult</source>
+        <target>par adulte</target>
+      </segment>
+    </unit>
+    <unit id="detail.childPrice">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:171,172</note>
+      </notes>
+      <segment>
+        <source> Children: <ph id="0" equiv="INTERPOLATION" disp="{{ item.priceChildEur | currency: &apos;EUR&apos; }}"/> </source>
+        <target>Enfants : <ph id="0" equiv="INTERPOLATION" disp="{{ item.priceChildEur | currency: &apos;EUR&apos; }}"/></target>
+      </segment>
+    </unit>
+    <unit id="detail.requestBooking">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:179,180</note>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:198,200</note>
+      </notes>
+      <segment>
+        <source> Request booking </source>
+        <target>Demander une réservation</target>
+      </segment>
+    </unit>
+    <unit id="detail.bookingSoon">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:182,183</note>
+      </notes>
+      <segment>
+        <source> Booking requests open very soon. No payment online: you pay on the day. </source>
+        <target>Les demandes de réservation ouvrent très bientôt. Aucun paiement en ligne : vous payez sur place.</target>
+      </segment>
+    </unit>
+    <unit id="detail.everyDay">
+      <notes>
+        <note category="location">src/app/features/activity-detail/activity-detail-page.ts:219</note>
+      </notes>
+      <segment>
+        <source>Every day</source>
+        <target>Tous les jours</target>
+      </segment>
+    </unit>
+    <unit id="city.activitiesTitle">
+      <notes>
+        <note category="location">src/app/features/city/city-page.ts:39,40</note>
+      </notes>
+      <segment>
+        <source>Things to do in <ph id="0" equiv="INTERPOLATION" disp="{{ item.name }}"/></source>
+        <target>Que faire à <ph id="0" equiv="INTERPOLATION" disp="{{ item.name }}"/></target>
+      </segment>
+    </unit>
+    <unit id="home.eyebrow">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:30,32</note>
+      </notes>
+      <segment>
+        <source> Marrakech · Ouarzazate · Merzouga </source>
+        <target>Marrakech · Ouarzazate · Merzouga</target>
+      </segment>
+    </unit>
+    <unit id="home.title">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:33,34</note>
+      </notes>
+      <segment>
+        <source> The best of Morocco, from the medina to the dunes </source>
+        <target>Le meilleur du Maroc, de la médina aux dunes</target>
+      </segment>
+    </unit>
+    <unit id="home.subtitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:36,38</note>
+      </notes>
+      <segment>
+        <source> Hand-picked excursions and activities with local guides. Send a request, we confirm it, you pay on the day. </source>
+        <target>Des excursions et activités sélectionnées avec des guides locaux. Envoyez une demande, nous la confirmons, vous payez sur place.</target>
+      </segment>
+    </unit>
+    <unit id="home.searchCity">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:45,46</note>
+      </notes>
+      <segment>
+        <source>Where</source>
+        <target>Où</target>
+      </segment>
+    </unit>
+    <unit id="home.anyCity">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:47,48</note>
+      </notes>
+      <segment>
+        <source>Any city</source>
+        <target>Toutes les villes</target>
+      </segment>
+    </unit>
+    <unit id="home.searchCategory">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:54,55</note>
+      </notes>
+      <segment>
+        <source>What</source>
+        <target>Quoi</target>
+      </segment>
+    </unit>
+    <unit id="home.anyCategory">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:56,57</note>
+      </notes>
+      <segment>
+        <source>Any experience</source>
+        <target>Toutes les expériences</target>
+      </segment>
+    </unit>
+    <unit id="home.searchButton">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:63,64</note>
+      </notes>
+      <segment>
+        <source>Search</source>
+        <target>Rechercher</target>
+      </segment>
+    </unit>
+    <unit id="home.citiesTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:82,84</note>
+      </notes>
+      <segment>
+        <source>Where to go</source>
+        <target>Où aller</target>
+      </segment>
+    </unit>
+    <unit id="home.categoriesTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:94,95</note>
+      </notes>
+      <segment>
+        <source>What do you feel like?</source>
+        <target>Qu&apos;est-ce qui vous tente ?</target>
+      </segment>
+    </unit>
+    <unit id="home.latestTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:113,115</note>
+      </notes>
+      <segment>
+        <source>New on Trivallo</source>
+        <target>Nouveautés sur Trivallo</target>
+      </segment>
+    </unit>
+    <unit id="home.seeAll">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:118,119</note>
+      </notes>
+      <segment>
+        <source>See all</source>
+        <target>Tout voir</target>
+      </segment>
+    </unit>
+    <unit id="home.howTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:137,138</note>
+      </notes>
+      <segment>
+        <source>How it works</source>
+        <target>Comment ça marche</target>
+      </segment>
+    </unit>
+    <unit id="home.step1Title">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:169</note>
+      </notes>
+      <segment>
+        <source>Pick an experience</source>
+        <target>Choisissez une expérience</target>
+      </segment>
+    </unit>
+    <unit id="home.step1Text">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:170</note>
+      </notes>
+      <segment>
+        <source>Browse tours and activities chosen with local guides.</source>
+        <target>Parcourez des excursions et activités choisies avec des guides locaux.</target>
+      </segment>
+    </unit>
+    <unit id="home.step2Title">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:173</note>
+      </notes>
+      <segment>
+        <source>Send a request</source>
+        <target>Envoyez une demande</target>
+      </segment>
+    </unit>
+    <unit id="home.step2Text">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:174</note>
+      </notes>
+      <segment>
+        <source>Choose a date and group size. No payment online.</source>
+        <target>Choisissez une date et le nombre de participants. Aucun paiement en ligne.</target>
+      </segment>
+    </unit>
+    <unit id="home.step3Title">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:177</note>
+      </notes>
+      <segment>
+        <source>We confirm, you go</source>
+        <target>Nous confirmons, vous partez</target>
+      </segment>
+    </unit>
+    <unit id="home.step3Text">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:178</note>
+      </notes>
+      <segment>
+        <source>We confirm by email with the guide. You pay on the day.</source>
+        <target>Nous confirmons par e-mail avec le guide. Vous payez sur place.</target>
+      </segment>
+    </unit>
+    <unit id="home.seoTitle">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:184</note>
+      </notes>
+      <segment>
+        <source>Excursions and activities in Morocco</source>
+        <target>Excursions et activités au Maroc</target>
+      </segment>
+    </unit>
+    <unit id="home.seoDescription">
+      <notes>
+        <note category="location">src/app/features/home/home-page.ts:185</note>
+      </notes>
+      <segment>
+        <source>Book the best excursions and activities in Marrakech, Ouarzazate and Merzouga: desert tours, hot-air balloons, day trips and cooking classes.</source>
+        <target>Réservez les meilleures excursions et activités à Marrakech, Ouarzazate et Merzouga : désert, montgolfière, excursions d&apos;une journée et cours de cuisine.</target>
+      </segment>
+    </unit>
+    <unit id="notFound.title">
+      <notes>
+        <note category="location">src/app/features/not-found/not-found-view.ts:14,15</note>
+      </notes>
+      <segment>
+        <source>This page got lost in the dunes</source>
+        <target>Cette page s&apos;est perdue dans les dunes</target>
+      </segment>
+    </unit>
+    <unit id="notFound.text">
+      <notes>
+        <note category="location">src/app/features/not-found/not-found-view.ts:16,18</note>
+      </notes>
+      <segment>
+        <source> The page you are looking for does not exist or is no longer available. </source>
+        <target>La page que vous cherchez n&apos;existe pas ou n&apos;est plus disponible.</target>
+      </segment>
+    </unit>
+    <unit id="notFound.cta">
+      <notes>
+        <note category="location">src/app/features/not-found/not-found-view.ts:19,22</note>
+      </notes>
+      <segment>
+        <source>Browse activities</source>
+        <target>Voir les activités</target>
+      </segment>
+    </unit>
+    <unit id="notFound.seoTitle">
+      <notes>
+        <note category="location">src/app/features/not-found/not-found-view.ts:30</note>
+      </notes>
+      <segment>
+        <source>Page not found</source>
+        <target>Page introuvable</target>
+      </segment>
+    </unit>
+    <unit id="footer.tagline">
+      <notes>
+        <note category="location">src/app/layout/site-footer.ts:14,16</note>
+      </notes>
+      <segment>
+        <source> Hand-picked excursions and activities in Marrakech, Ouarzazate and Merzouga. </source>
+        <target>Des excursions et activités sélectionnées à Marrakech, Ouarzazate et Merzouga.</target>
+      </segment>
+    </unit>
+    <unit id="footer.destinations">
+      <notes>
+        <note category="location">src/app/layout/site-footer.ts:22,24</note>
+      </notes>
+      <segment>
+        <source> Destinations </source>
+        <target>Destinations</target>
+      </segment>
+    </unit>
+    <unit id="footer.howItWorks">
+      <notes>
+        <note category="location">src/app/layout/site-footer.ts:35,37</note>
+      </notes>
+      <segment>
+        <source> How it works </source>
+        <target>Comment ça marche</target>
+      </segment>
+    </unit>
+    <unit id="footer.howItWorksText">
+      <notes>
+        <note category="location">src/app/layout/site-footer.ts:38,40</note>
+      </notes>
+      <segment>
+        <source> Send a booking request, our team confirms it with the local guide, and you pay on the day. </source>
+        <target>Envoyez une demande de réservation, notre équipe la confirme avec le guide local, et vous payez sur place.</target>
+      </segment>
+    </unit>
+    <unit id="header.navLabel">
+      <notes>
+        <note category="location">src/app/layout/site-header.ts:30,31</note>
+        <note category="location">src/app/layout/site-header.ts:62,63</note>
+      </notes>
+      <segment>
+        <source>Main</source>
+        <target>Principal</target>
+      </segment>
+    </unit>
+    <unit id="header.menu">
+      <notes>
+        <note category="location">src/app/layout/site-header.ts:50,51</note>
+      </notes>
+      <segment>
+        <source>Menu</source>
+        <target>Menu</target>
+      </segment>
+    </unit>
+    <unit id="header.allActivities">
+      <notes>
+        <note category="location">src/app/layout/site-header.ts:82</note>
+      </notes>
+      <segment>
+        <source>All activities</source>
+        <target>Toutes les activités</target>
+      </segment>
+    </unit>
+    <unit id="activityCard.from">
+      <notes>
+        <note category="location">src/app/shared/ui/activity-card.ts:47,48</note>
+      </notes>
+      <segment>
+        <source>from</source>
+        <target>à partir de</target>
+      </segment>
+    </unit>
+    <unit id="cityCard.explore">
+      <notes>
+        <note category="location">src/app/shared/ui/city-card.ts:33,34</note>
+      </notes>
+      <segment>
+        <source>Explore</source>
+        <target>Découvrir</target>
+      </segment>
+    </unit>
+    <unit id="pagination.label">
+      <notes>
+        <note category="location">src/app/shared/ui/pagination.ts:15,17</note>
+      </notes>
+      <segment>
+        <source>Pagination</source>
+        <target>Pagination</target>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <notes>
+        <note category="location">src/app/shared/ui/pagination.ts:25,27</note>
+      </notes>
+      <segment>
+        <source>Previous</source>
+        <target>Précédent</target>
+      </segment>
+    </unit>
+    <unit id="pagination.status">
+      <notes>
+        <note category="location">src/app/shared/ui/pagination.ts:29,31</note>
+      </notes>
+      <segment>
+        <source>Page <ph id="0" equiv="INTERPOLATION" disp="{{ displayPage() }}"/> of <ph id="1" equiv="INTERPOLATION_1" disp="{{ totalPages() }}"/></source>
+        <target>Page <ph id="0" equiv="INTERPOLATION" disp="{{ displayPage() }}"/> sur <ph id="1" equiv="INTERPOLATION_1" disp="{{ totalPages() }}"/></target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <notes>
+        <note category="location">src/app/shared/ui/pagination.ts:38,39</note>
+      </notes>
+      <segment>
+        <source>Next</source>
+        <target>Suivant</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
