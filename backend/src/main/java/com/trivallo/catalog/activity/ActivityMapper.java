@@ -84,10 +84,7 @@ public interface ActivityMapper {
     /** Splits a one-item-per-line text column into a list, ignoring blank lines. */
     @Named("lines")
     default List<String> lines(String text) {
-        if (text == null || text.isBlank()) {
-            return List.of();
-        }
-        return text.lines().map(String::strip).filter(line -> !line.isEmpty()).toList();
+        return TextLines.split(text);
     }
 
     @Named("sortedDays")

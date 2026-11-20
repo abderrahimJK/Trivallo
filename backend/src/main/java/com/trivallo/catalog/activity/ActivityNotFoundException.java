@@ -7,4 +7,8 @@ public class ActivityNotFoundException extends ResourceNotFoundException {
     public ActivityNotFoundException(String slug) {
         super("Activity '%s' not found".formatted(slug));
     }
+
+    public ActivityNotFoundException(long id) {
+        super("Activity with id %d not found".formatted(id));
+    }
 }
