@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Warm sand and terracotta from the desert, a deep teal for actions.
+ * Components use these through Tailwind utilities (bg-sand-50, text-ink-900, ...).
+ */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f5eee3;
+  --color-sand-200: #ebdcc6;
+  --color-sand-300: #dcc29f;
+
+  --color-terracotta-400: #e0865d;
+  --color-terracotta-500: #c9663b;
+  --color-terracotta-600: #a9502b;
+
+  --color-teal-600: #0f6b66;
+  --color-teal-700: #0b5551;
+  --color-teal-800: #083f3c;
+
+  --color-ink-500: #6b6259;
+  --color-ink-700: #3d3631;
+  --color-ink-900: #1f1a17;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(31 26 23 / 0.06), 0 8px 24px -12px rgb(31 26 23 / 0.18);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-sand-50 font-sans text-ink-900 antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-teal-600;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-teal-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-800 disabled:cursor-not-allowed disabled:bg-ink-500/40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-sand-300 bg-white px-5 py-2.5 text-sm font-semibold text-ink-900 transition hover:border-ink-500;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-sand-200 bg-white px-3 py-2 text-sm text-ink-900 focus:border-teal-600 focus:outline-none;
+  }
+
+  .field-label {
+    @apply mb-1 block text-xs font-semibold tracking-wide text-ink-500 uppercase;
+  }
+}
