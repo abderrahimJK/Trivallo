@@ -1,6 +1,7 @@
 # Runs on every push to develop/main and on every pull request.
 # 1. backend: compiles, runs unit tests and packages the jar (fails on MapStruct unmapped fields too).
-# 2. docker: builds the backend image so a broken Dockerfile is caught before deploy day.
+# 2. frontend: builds both locales and the SSR server (fails on a missing French translation).
+# 3. docker: builds both images so a broken Dockerfile is caught before deploy day.
 # Pushing images to a registry and deploying to the VPS come in week 4.
 name: CI
 
@@ -29,10 +30,31 @@ jobs:
       - name: Build and test
         run: mvn -B verify
 
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Check formatting
+        run: npx prettier --check "src/**/*.ts"
+      - name: Build (en + fr, SSR)
+        run: npm run build
+
   docker:
     runs-on: ubuntu-latest
-    needs: backend
+    needs: [backend, frontend]
     steps:
       - uses: actions/checkout@v4
       - name: Build backend image
         run: docker build -t trivallo-backend:ci backend
+      - name: Build frontend image
+        run: docker build -t trivallo-frontend:ci frontend

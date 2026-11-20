@@ -1,6 +1,6 @@
 # Local development stack. Passwords come from .env (copy .env.example), never from this file.
 #   docker compose up -d                 -> Postgres + Keycloak (run the backend from your IDE)
-#   docker compose --profile app up -d   -> also builds and runs the backend container
+#   docker compose --profile app up -d   -> also builds backend + frontend behind Nginx on http://localhost:8000
 # Production gets its own compose file with Nginx in week 4.
 
 name: trivallo
@@ -65,6 +65,28 @@ services:
         condition: service_healthy
       keycloak:
         condition: service_started
+
+  frontend:
+    profiles: ["app"]
+    build: ./frontend
+    restart: unless-stopped
+    environment:
+      API_ORIGIN: http://backend:8080
+      SITE_ORIGIN: http://localhost:8000
+    depends_on:
+      - backend
+
+  nginx:
+    profiles: ["app"]
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./infra/nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
 
 volumes:
   postgres-data:
