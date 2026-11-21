@@ -35,3 +35,16 @@ export function linesToList(text: string | null | undefined): string[] {
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
 }
+
+/** Plain-English text for a control's validation error, used inline and in the form's summary. */
+export function validationMessage(errors: ValidationErrors | null): string {
+  if (!errors) return '';
+  if (errors['required']) return 'Required.';
+  if (errors['pattern']) return 'Use lowercase letters, digits and hyphens.';
+  if (errors['maxlength']) return `At most ${errors['maxlength'].requiredLength} characters.`;
+  if (errors['min']) return `Must be at least ${errors['min'].min}.`;
+  if (errors['max']) return `Must be at most ${errors['max'].max}.`;
+  if (errors['https']) return 'Must be an https:// link.';
+  if (errors['noDay']) return 'Pick at least one day.';
+  return 'Invalid value.';
+}

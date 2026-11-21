@@ -1,15 +1,17 @@
 import { httpResource } from '@angular/common/http';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
+  Injector,
   input,
   linkedSignal,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -25,11 +27,14 @@ import {
 import { ApiFailure, toApiFailure } from '../api/api-errors';
 import { FieldError } from '../ui/field-error';
 import { FormAlert } from '../ui/form-alert';
+import { FormIssue, FormIssues } from '../ui/form-issues';
 import { slugify } from '../ui/form-utils';
 import { AdminPageHeader } from '../ui/page-header';
 import { StatusBadge } from '../ui/status-badge';
 import { ActivityImages } from './activity-images';
 import {
+  activityFieldId,
+  activityFormIssues,
   buildActivityForm,
   patchActivityForm,
   toActivityRequest,
@@ -48,6 +53,7 @@ import {
     AdminPageHeader,
     FieldError,
     FormAlert,
+    FormIssues,
     StatusBadge,
     ActivityImages,
   ],
@@ -57,6 +63,7 @@ import {
 export class ActivityFormPage {
   private readonly api = inject(AdminWriteApi);
   private readonly router = inject(Router);
+  private readonly injector = inject(Injector);
 
   /** Route param; absent on /new. */
   readonly id = input<string>();
@@ -71,6 +78,15 @@ export class ActivityFormPage {
   protected readonly week = WEEK;
   protected readonly cityName = englishName;
   protected readonly language = signal<Locale>('en');
+  protected readonly fieldId = activityFieldId;
+
+  /** Shown after a save was refused on the client, then kept up to date as fields are fixed. */
+  private readonly showIssues = signal(false);
+  private readonly formValue = toSignal(this.form.valueChanges);
+  protected readonly issues = computed(() => {
+    this.formValue();
+    return this.showIssues() ? activityFormIssues(this.form) : [];
+  });
 
   protected readonly cities = httpResource<CityAdmin[]>(() => adminApi.cities());
   protected readonly categories = httpResource<CategoryAdmin[]>(() => adminApi.categories());
@@ -111,12 +127,12 @@ export class ActivityFormPage {
   protected save(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.failure.set({
-        message: 'Some fields need attention (check both languages).',
-        fieldErrors: [],
-      });
+      this.failure.set(null);
+      this.notice.set(null);
+      this.showIssues.set(true);
       return;
     }
+    this.showIssues.set(false);
     const body = toActivityRequest(this.form);
     const id = this.activityId();
     if (id) {
@@ -151,6 +167,21 @@ export class ActivityFormPage {
 
   protected onImagesChanged(activity: ActivityAdmin): void {
     this.activity.set(activity);
+  }
+
+  /** Opens the field's language tab (or collapsed section) and moves focus to it. */
+  protected goToIssue(issue: FormIssue): void {
+    if (issue.language) this.language.set(issue.language);
+    afterNextRender(
+      () => {
+        const field = document.getElementById(issue.fieldId);
+        const details = field?.closest('details');
+        if (details) details.open = true;
+        field?.scrollIntoView({ block: 'center' });
+        field?.focus({ preventScroll: true });
+      },
+      { injector: this.injector },
+    );
   }
 
   protected hasError(controlPath: string, error: string): boolean {

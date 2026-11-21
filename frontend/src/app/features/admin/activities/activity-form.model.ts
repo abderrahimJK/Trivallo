@@ -6,7 +6,14 @@ import {
   ActivityTranslation,
   Locale,
 } from '../api/admin.models';
-import { blankToNull, httpsUrl, linesToList, SLUG_PATTERN } from '../ui/form-utils';
+import { FormIssue } from '../ui/form-issues';
+import {
+  blankToNull,
+  httpsUrl,
+  linesToList,
+  SLUG_PATTERN,
+  validationMessage,
+} from '../ui/form-utils';
 
 export const WEEK: DayOfWeek[] = [
   'MONDAY',
@@ -100,6 +107,79 @@ export function coordinatesInPairs(group: AbstractControl): ValidationErrors | n
 
 function atLeastOneDay(group: AbstractControl): ValidationErrors | null {
   return Object.values(group.value).some(Boolean) ? null : { noDay: true };
+}
+
+/** Labels of the translated texts, in page order. */
+const TEXT_LABELS: Record<keyof TranslationGroup['controls'], string> = {
+  title: 'Title',
+  summary: 'Summary',
+  description: 'Description',
+  itinerary: 'Itinerary',
+  included: 'Included',
+  notIncluded: 'Not included',
+  metaTitle: 'Meta title',
+  metaDescription: 'Meta description',
+};
+
+/** Labels of the other fields, in page order. */
+const DETAIL_LABELS: Partial<Record<keyof ActivityForm['controls'], string>> = {
+  citySlug: 'City',
+  categorySlug: 'Category',
+  type: 'Type',
+  slug: 'URL slug',
+  priceAdultEur: 'Adult price',
+  priceChildEur: 'Child price',
+  durationMinutes: 'Duration',
+  maxGroupSize: 'Maximum group size',
+  operatingDays: 'Runs on',
+  meetingPoint: 'Meeting point',
+  latitude: 'Latitude',
+  longitude: 'Longitude',
+  tripadvisorUrl: 'TripAdvisor link',
+};
+
+/** Element id of a field, shared by the template and the error summary. */
+export function activityFieldId(name: string, language?: Locale): string {
+  return language ? `activity-${language}-${name}` : `activity-${name}`;
+}
+
+/** Every rule the form currently breaks, in page order: texts (English, then French), then details. */
+export function activityFormIssues(form: ActivityForm): FormIssue[] {
+  const issues: FormIssue[] = [];
+  for (const language of ['en', 'fr'] as const) {
+    for (const [name, label] of Object.entries(TEXT_LABELS)) {
+      const control = form.controls[language].get(name);
+      if (control?.invalid) {
+        const message = validationMessage(control.errors);
+        issues.push({ fieldId: activityFieldId(name, language), label, message, language });
+      }
+    }
+  }
+  for (const [name, label] of Object.entries(DETAIL_LABELS)) {
+    const control = form.get(name);
+    if (control?.invalid) {
+      issues.push({
+        fieldId: activityFieldId(name),
+        label,
+        message: validationMessage(control.errors),
+      });
+    }
+  }
+  if (form.hasError('childAboveAdult')) {
+    issues.push({
+      fieldId: activityFieldId('priceChildEur'),
+      label: 'Child price',
+      message: 'Cannot be higher than the adult price.',
+    });
+  }
+  if (form.hasError('coordinatesPair')) {
+    issues.push({
+      fieldId: activityFieldId('latitude'),
+      label: 'Latitude and longitude',
+      message: 'Fill in both, or neither.',
+    });
+  }
+  return issues;
 }
 
 /** Form value -> request body. French is sent only once it has a title; English is required. */

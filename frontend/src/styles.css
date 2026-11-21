@@ -83,6 +83,11 @@
     @apply min-h-11 w-full rounded-lg border border-border bg-card px-3 text-base text-foreground transition-colors duration-200 hover:border-foreground/40 focus:border-primary focus:outline-none;
   }
 
+  /* Angular adds these classes; select.field and textarea.field included */
+  .field.ng-invalid.ng-touched {
+    @apply border-red-600;
+  }
+
   .field-label {
     @apply mb-1 block text-sm font-semibold text-foreground;
   }
