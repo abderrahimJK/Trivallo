@@ -60,6 +60,8 @@ services:
       KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/trivallo/protocol/openid-connect/certs
     ports:
       - "8080:8080"
+    volumes:
+      - media-data:/var/lib/trivallo/media
     depends_on:
       postgres:
         condition: service_healthy
@@ -90,3 +92,4 @@ services:
 
 volumes:
   postgres-data:
+  media-data:

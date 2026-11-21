@@ -20,6 +20,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/city/city-page').then((m) => m.CityPage),
   },
   {
+    path: 'admin',
+    data: { preload: false },
+    loadChildren: () => import('./features/admin/admin.routes').then((m) => m.adminRoutes),
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found-page').then((m) => m.NotFoundPage),
   },

@@ -29,6 +29,15 @@ final class ActivitySpecifications {
                 .toList());
     }
 
+    /** Admin list: any status unless one is asked for. */
+    static Specification<Activity> adminMatching(ActivityStatus status, String citySlug) {
+        return Specification.allOf(Stream.of(
+                status == null ? null : hasStatus(status),
+                inCity(citySlug))
+                .filter(Objects::nonNull)
+                .toList());
+    }
+
     private static Specification<Activity> hasStatus(ActivityStatus status) {
         return (root, query, cb) -> cb.equal(root.get("status"), status);
     }

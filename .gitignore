@@ -18,3 +18,6 @@ dist/
 # Python bytecode from the ui-ux-pro-max skill scripts
 __pycache__/
 *.pyc
+
+# Images uploaded while running the backend locally
+backend/media/

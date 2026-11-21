@@ -9,4 +9,8 @@ public interface CityRepository extends JpaRepository<City, Long> {
     List<City> findAllByOrderBySortOrderAsc();
 
     Optional<City> findBySlug(String slug);
+
+    boolean existsBySlug(String slug);
+
+    boolean existsBySlugAndIdNot(String slug, Long id);
 }

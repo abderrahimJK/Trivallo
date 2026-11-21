@@ -16,6 +16,11 @@ spring:
         default_batch_fetch_size: 50
   flyway:
     locations: classpath:db/migration
+  servlet:
+    multipart:
+      # Keep in line with trivallo.media.max-file-size; the request limit leaves room for form fields.
+      max-file-size: 5MB
+      max-request-size: 6MB
   security:
     oauth2:
       resourceserver:
@@ -33,6 +38,11 @@ server:
 trivallo:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+  media:
+    # A Docker volume in production; ./media next to the backend when run from the IDE.
+    directory: ${MEDIA_DIR:./media}
+    public-path: /media
+    max-file-size: 5MB
 
 springdoc:
   api-docs:

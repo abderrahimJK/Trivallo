@@ -1,6 +1,8 @@
 package com.trivallo.shared.web;
 
+import com.trivallo.shared.exception.ConflictException;
 import com.trivallo.shared.exception.ResourceNotFoundException;
+import com.trivallo.shared.exception.RuleViolationException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSourceResolvable;
@@ -40,6 +42,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     ProblemDetail handleNotFound(ResourceNotFoundException exception) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
         problem.setTitle("Resource not found");
+        return problem;
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    ProblemDetail handleConflict(ConflictException exception) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, exception.getMessage());
+        problem.setTitle("Conflict");
+        return problem;
+    }
+
+    @ExceptionHandler(RuleViolationException.class)
+    ProblemDetail handleRuleViolation(RuleViolationException exception) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST, "One or more request values are invalid.");
+        problem.setTitle("Bad Request");
+        problem.setProperty(ERRORS_PROPERTY, exception.getViolations().stream()
+                .map(violation -> new InvalidField(violation.field(), violation.message()))
+                .toList());
         return problem;
     }
 
