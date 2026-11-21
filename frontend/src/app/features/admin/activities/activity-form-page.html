@@ -104,7 +104,12 @@
                   <span aria-hidden="true">*</span>
                 }
               </span>
-              <input class="field" formControlName="title" maxlength="200" />
+              <input
+                class="field"
+                [id]="fieldId('title', $any(lang))"
+                formControlName="title"
+                maxlength="200"
+              />
               <trv-field-error [control]="form.get(lang + '.title')!" />
             </label>
             <label>
@@ -112,30 +117,54 @@
               <textarea
                 class="field py-2"
                 rows="2"
+                [id]="fieldId('summary', $any(lang))"
                 formControlName="summary"
                 maxlength="500"
               ></textarea>
               <span class="text-xs text-muted-foreground"
                 >One or two sentences, shown on cards.</span
               >
+              <trv-field-error [control]="form.get(lang + '.summary')!" />
             </label>
             <label>
               <span class="field-label">Description</span>
-              <textarea class="field py-2" rows="6" formControlName="description"></textarea>
+              <textarea
+                class="field py-2"
+                rows="6"
+                [id]="fieldId('description', $any(lang))"
+                formControlName="description"
+              ></textarea>
+              <trv-field-error [control]="form.get(lang + '.description')!" />
             </label>
             <label>
               <span class="field-label">Itinerary</span>
-              <textarea class="field py-2" rows="5" formControlName="itinerary"></textarea>
+              <textarea
+                class="field py-2"
+                rows="5"
+                [id]="fieldId('itinerary', $any(lang))"
+                formControlName="itinerary"
+              ></textarea>
+              <trv-field-error [control]="form.get(lang + '.itinerary')!" />
             </label>
             <div class="grid gap-4 md:grid-cols-2">
               <label>
                 <span class="field-label">Included</span>
-                <textarea class="field py-2" rows="4" formControlName="included"></textarea>
+                <textarea
+                  class="field py-2"
+                  rows="4"
+                  [id]="fieldId('included', $any(lang))"
+                  formControlName="included"
+                ></textarea>
                 <span class="text-xs text-muted-foreground">One item per line.</span>
               </label>
               <label>
                 <span class="field-label">Not included</span>
-                <textarea class="field py-2" rows="4" formControlName="notIncluded"></textarea>
+                <textarea
+                  class="field py-2"
+                  rows="4"
+                  [id]="fieldId('notIncluded', $any(lang))"
+                  formControlName="notIncluded"
+                ></textarea>
                 <span class="text-xs text-muted-foreground">One item per line.</span>
               </label>
             </div>
@@ -144,16 +173,24 @@
               <div class="mt-3 grid gap-4">
                 <label>
                   <span class="field-label">Meta title</span>
-                  <input class="field" formControlName="metaTitle" maxlength="120" />
+                  <input
+                    class="field"
+                    [id]="fieldId('metaTitle', $any(lang))"
+                    formControlName="metaTitle"
+                    maxlength="120"
+                  />
+                  <trv-field-error [control]="form.get(lang + '.metaTitle')!" />
                 </label>
                 <label>
                   <span class="field-label">Meta description</span>
                   <textarea
                     class="field py-2"
                     rows="2"
+                    [id]="fieldId('metaDescription', $any(lang))"
                     formControlName="metaDescription"
                     maxlength="320"
                   ></textarea>
+                  <trv-field-error [control]="form.get(lang + '.metaDescription')!" />
                 </label>
               </div>
             </details>
@@ -170,7 +207,7 @@
         <div class="mt-4 grid gap-4 md:grid-cols-2">
           <label>
             <span class="field-label">City *</span>
-            <select class="field" formControlName="citySlug">
+            <select class="field" [id]="fieldId('citySlug')" formControlName="citySlug">
               <option value="" disabled>Choose a city</option>
               @for (c of cities.value() ?? []; track c.id) {
                 <option [value]="c.slug">{{ cityName(c) }}</option>
@@ -180,7 +217,7 @@
           </label>
           <label>
             <span class="field-label">Category *</span>
-            <select class="field" formControlName="categorySlug">
+            <select class="field" [id]="fieldId('categorySlug')" formControlName="categorySlug">
               <option value="" disabled>Choose a category</option>
               @for (c of categories.value() ?? []; track c.id) {
                 <option [value]="c.slug">{{ cityName(c) }}</option>
@@ -201,7 +238,12 @@
           </fieldset>
           <label>
             <span class="field-label">URL slug *</span>
-            <input class="field font-mono text-sm" formControlName="slug" maxlength="160" />
+            <input
+              class="field font-mono text-sm"
+              [id]="fieldId('slug')"
+              formControlName="slug"
+              maxlength="160"
+            />
             <span class="text-xs text-muted-foreground"
               >Used in the page address: /activities/{{ form.controls.slug.value || '…' }}</span
             >
@@ -215,6 +257,7 @@
               min="0"
               step="0.01"
               inputmode="decimal"
+              [id]="fieldId('priceAdultEur')"
               formControlName="priceAdultEur"
             />
             <trv-field-error [control]="form.controls.priceAdultEur" />
@@ -227,6 +270,10 @@
               min="0"
               step="0.01"
               inputmode="decimal"
+              [id]="fieldId('priceChildEur')"
+              [class.border-red-600]="
+                form.hasError('childAboveAdult') && form.controls.priceChildEur.touched
+              "
               formControlName="priceChildEur"
             />
             <trv-field-error [control]="form.controls.priceChildEur" />
@@ -244,6 +291,7 @@
               min="15"
               max="20160"
               step="15"
+              [id]="fieldId('durationMinutes')"
               formControlName="durationMinutes"
             />
             <span class="text-xs text-muted-foreground"
@@ -253,12 +301,24 @@
           </label>
           <label>
             <span class="field-label">Maximum group size *</span>
-            <input class="field" type="number" min="1" max="200" formControlName="maxGroupSize" />
+            <input
+              class="field"
+              type="number"
+              min="1"
+              max="200"
+              [id]="fieldId('maxGroupSize')"
+              formControlName="maxGroupSize"
+            />
             <trv-field-error [control]="form.controls.maxGroupSize" />
           </label>
         </div>
 
-        <fieldset class="mt-4" formGroupName="operatingDays">
+        <fieldset
+          class="mt-4"
+          formGroupName="operatingDays"
+          [id]="fieldId('operatingDays')"
+          tabindex="-1"
+        >
           <legend class="field-label">Runs on *</legend>
           <div class="flex flex-wrap gap-2">
             @for (day of week; track day) {
@@ -285,6 +345,7 @@
             <span class="field-label">Meeting point</span>
             <input
               class="field"
+              [id]="fieldId('meetingPoint')"
               formControlName="meetingPoint"
               maxlength="255"
               placeholder="Hotel pick-up in Marrakech Medina"
@@ -292,12 +353,24 @@
           </label>
           <label>
             <span class="field-label">Latitude</span>
-            <input class="field" type="number" step="0.000001" formControlName="latitude" />
+            <input
+              class="field"
+              type="number"
+              step="0.000001"
+              [id]="fieldId('latitude')"
+              formControlName="latitude"
+            />
             <trv-field-error [control]="form.controls.latitude" />
           </label>
           <label>
             <span class="field-label">Longitude</span>
-            <input class="field" type="number" step="0.000001" formControlName="longitude" />
+            <input
+              class="field"
+              type="number"
+              step="0.000001"
+              [id]="fieldId('longitude')"
+              formControlName="longitude"
+            />
             <trv-field-error [control]="form.controls.longitude" />
           </label>
           @if (
@@ -313,6 +386,7 @@
             <input
               class="field"
               type="url"
+              [id]="fieldId('tripadvisorUrl')"
               formControlName="tripadvisorUrl"
               placeholder="https://www.tripadvisor.com/…"
             />
@@ -324,6 +398,7 @@
       <div
         class="sticky bottom-0 -mx-4 space-y-3 border-t border-border bg-background/95 px-4 py-4 backdrop-blur md:mx-0 md:rounded-xl md:border"
       >
+        <trv-form-issues [issues]="issues()" (selected)="goToIssue($event)" />
         <trv-form-alert [failure]="failure()" />
         @if (notice()) {
           <p role="status" class="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-900">
