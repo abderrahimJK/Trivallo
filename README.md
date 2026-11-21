@@ -43,6 +43,13 @@ The `dev` profile loads a few sample activities from `db/devdata` on top of the 
 Use a separate database for anything that runs with the `prod` profile: Flyway will refuse to start a
 `prod` app against a database that has the dev sample data applied.
 
+More dummy data: `infra/dev-data/dummy-activities.sql` adds 15 published activities (EN + FR) across the three
+cities. It is a plain script, not a Flyway migration, so it works with either profile, and it is safe to re-run:
+
+```bash
+docker compose exec -T postgres psql -U trivallo -d trivallo -v ON_ERROR_STOP=1 < infra/dev-data/dummy-activities.sql
+```
+
 ### Development accounts (realm `trivallo`)
 
 | User | Password | Roles |
