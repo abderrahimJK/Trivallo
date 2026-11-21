@@ -127,6 +127,51 @@
         <target>Votre compte · Trivallo</target>
       </segment>
     </unit>
+    <unit id="signInUnavailable.title">
+      <notes>
+        <note category="location">src/app/features/account/sign-in-unavailable-page.ts:14,16</note>
+      </notes>
+      <segment>
+        <source> Sign-in is unavailable right now </source>
+        <target>La connexion est indisponible pour le moment</target>
+      </segment>
+    </unit>
+    <unit id="signInUnavailable.body">
+      <notes>
+        <note category="location">src/app/features/account/sign-in-unavailable-page.ts:17,19</note>
+      </notes>
+      <segment>
+        <source> We couldn&apos;t reach the sign-in service. Please try again in a few minutes. </source>
+        <target>Nous n&apos;avons pas pu joindre le service de connexion. Réessayez dans quelques minutes.</target>
+      </segment>
+    </unit>
+    <unit id="signInUnavailable.retry">
+      <notes>
+        <note category="location">src/app/features/account/sign-in-unavailable-page.ts:21,23</note>
+      </notes>
+      <segment>
+        <source> Try again </source>
+        <target>Réessayer</target>
+      </segment>
+    </unit>
+    <unit id="signInUnavailable.home">
+      <notes>
+        <note category="location">src/app/features/account/sign-in-unavailable-page.ts:23,26</note>
+      </notes>
+      <segment>
+        <source>Back to home</source>
+        <target>Retour à l&apos;accueil</target>
+      </segment>
+    </unit>
+    <unit id="signInUnavailable.pageTitle">
+      <notes>
+        <note category="location">src/app/features/account/sign-in-unavailable-page.ts:34</note>
+      </notes>
+      <segment>
+        <source>Sign-in unavailable · Trivallo</source>
+        <target>Connexion indisponible · Trivallo</target>
+      </segment>
+    </unit>
     <unit id="activities.title">
       <notes>
         <note category="location">src/app/features/activities/activities-page.ts:15,16</note>

@@ -1,12 +1,14 @@
 import { inject, LOCALE_ID } from '@angular/core';
 import { CanActivateFn, GuardResult, Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { AdminTokenSource } from './admin-token.interceptor';
 import { SIGN_IN_ENABLED } from './auth-area';
+import { KEYCLOAK_REALM_URL } from './auth.config';
 import { SessionHint } from './session-hint';
 
 const RETURN_URL_KEY = 'trv.auth.returnUrl';
+const SIGN_IN_UNAVAILABLE_URL = '/account/unavailable';
 export const ADMIN_ROLE = 'ADMIN';
 
 /** Claims of a Keycloak access token that the frontend reads. */
@@ -42,6 +44,8 @@ export const adminGuard: CanActivateFn = (_route, state) => {
  * - App started on a public page (no sign-in providers loaded): full reload of the URL.
  * - Not signed in: remember the page, go to Keycloak (in the site's language), come back.
  * - Back from Keycloak (?code=&state= on /account): continue to the remembered page.
+ * - Keycloak unreachable, or it refused the sign-in: the "sign-in unavailable" page. Without this
+ *   the library fails silently and the visitor is left on an empty page.
  */
 function signedIn(
   isCallback: boolean,
@@ -58,8 +62,17 @@ function signedIn(
   const locale = inject(LOCALE_ID);
   inject(AdminTokenSource).register(() => oidc.getAccessToken());
 
-  return oidc.checkAuth().pipe(
-    switchMap(({ isAuthenticated }) => {
+  const unavailable = router.parseUrl(SIGN_IN_UNAVAILABLE_URL);
+
+  // Fetching Keycloak's discovery document first turns "Keycloak is down" into an error we see.
+  return oidc.preloadAuthWellKnownDocument().pipe(
+    switchMap(() => oidc.checkAuth()),
+    switchMap(({ isAuthenticated, errorMessage }) => {
+      if (!isAuthenticated && isCallback && errorMessage) {
+        // Keycloak came back with an error: retrying here would loop, so stop and explain.
+        console.error('Sign-in failed after returning from Keycloak:', errorMessage);
+        return of(unavailable);
+      }
       if (!isAuthenticated) {
         hint.clear();
         sessionStorage.setItem(RETURN_URL_KEY, url);
@@ -77,6 +90,10 @@ function signedIn(
           return allow(claims);
         }),
       );
+    }),
+    catchError((error: unknown) => {
+      console.error(`Sign-in service unreachable at ${KEYCLOAK_REALM_URL}`, error);
+      return of(unavailable);
     }),
   );
 }
