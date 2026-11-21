@@ -1,0 +1,172 @@
+/*
+ * Trivallo look for Keycloak's login pages, from design-system/trivallo (MASTER.md, revision 2):
+ * Inter, white card on a warm light grey, near-black text, blue links, terracotta main button.
+ * Only PatternFly variables and a few selectors are overridden.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --trv-primary: #1d4ed8;
+  --trv-accent: #c2410c;
+  --trv-accent-hover: #9a3412;
+  --trv-foreground: #1c1917;
+  --trv-muted: #f5f5f4;
+  --trv-muted-foreground: #57534e;
+  --trv-border: #e7e5e4;
+
+  --pf-v5-global--FontFamily--text: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --pf-v5-global--FontFamily--heading: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --pf-v5-global--Color--100: var(--trv-foreground);
+  --pf-v5-global--Color--200: var(--trv-muted-foreground);
+  --pf-v5-global--BorderColor--100: var(--trv-border);
+  --pf-v5-global--primary-color--100: var(--trv-accent);
+  --pf-v5-global--primary-color--200: var(--trv-accent-hover);
+  --pf-v5-global--link--Color: var(--trv-primary);
+  --pf-v5-global--link--Color--hover: #1e3a8a;
+  --pf-v5-global--active-color--100: var(--trv-primary);
+  --pf-v5-global--BorderRadius--sm: 8px;
+  --keycloak-card-top-color: transparent;
+}
+
+.login-pf body,
+body {
+  background: var(--trv-muted);
+  color: var(--trv-foreground);
+  font-family: var(--pf-v5-global--FontFamily--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Logo: the site's mark + wordmark, taken from the realm display name ("Trivallo"). */
+#kc-header #kc-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--trv-foreground) !important; /* PatternFly makes it white for its dark background */
+  text-transform: none;
+}
+
+#kc-header-wrapper::before {
+  content: "";
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  background: url("../img/trivallo-mark.svg") no-repeat center / contain;
+}
+
+/* Card */
+.pf-v5-c-login__main {
+  background: #fff;
+  border: 1px solid var(--trv-border);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgb(28 25 23 / 0.04), 0 8px 24px rgb(28 25 23 / 0.06);
+  overflow: hidden;
+}
+
+.pf-v5-c-login__main-header {
+  border-top: 0;
+}
+
+.pf-v5-c-login__main-header .pf-v5-c-title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Fields: one 1px border all round, blue on focus, like the site's .field */
+.pf-v5-c-form-control {
+  min-height: 2.75rem;
+  border: 1px solid var(--trv-border);
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.pf-v5-c-form-control::before,
+.pf-v5-c-form-control::after {
+  border: 0 !important;
+}
+
+.pf-v5-c-form-control:hover {
+  border-color: rgb(28 25 23 / 0.4);
+}
+
+.pf-v5-c-form-control:focus-within {
+  border-color: var(--trv-primary);
+  box-shadow: 0 0 0 3px rgb(29 78 216 / 0.15);
+}
+
+.pf-v5-c-form-control input:focus,
+.pf-v5-c-form-control input:focus-visible,
+.pf-v5-c-form-control select:focus,
+.pf-v5-c-form-control select:focus-visible {
+  outline: none;
+}
+
+.pf-v5-c-form-control.pf-m-error {
+  border-color: #dc2626;
+}
+
+/* Password field and its show/hide button read as one control */
+.pf-v5-c-input-group .pf-v5-c-form-control {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.pf-v5-c-input-group .pf-v5-c-button.pf-m-control {
+  border: 1px solid var(--trv-border);
+  border-inline-start: 0;
+  border-start-end-radius: 8px;
+  border-end-end-radius: 8px;
+}
+
+.pf-v5-c-input-group .pf-v5-c-button.pf-m-control::after {
+  border: 0;
+}
+
+/* Main button: the site's terracotta call to action */
+.pf-v5-c-button.pf-m-primary {
+  --pf-v5-c-button--m-primary--BackgroundColor: var(--trv-accent);
+  --pf-v5-c-button--m-primary--hover--BackgroundColor: var(--trv-accent-hover);
+  --pf-v5-c-button--m-primary--focus--BackgroundColor: var(--trv-accent-hover);
+  --pf-v5-c-button--m-primary--active--BackgroundColor: var(--trv-accent-hover);
+  --pf-v5-c-button--BorderRadius: 8px;
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+
+.pf-v5-c-button.pf-m-secondary,
+.pf-v5-c-button.pf-m-tertiary {
+  --pf-v5-c-button--BorderRadius: 8px;
+}
+
+.pf-v5-c-button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--trv-primary);
+  outline-offset: 2px;
+}
+
+a {
+  font-weight: 600;
+}
+
+/* Language menu in the card header */
+.pf-v5-c-menu-toggle {
+  --pf-v5-c-menu-toggle--BorderRadius: 8px;
+  border: 1px solid var(--trv-border);
+  border-radius: 8px;
+}
+
+.pf-v5-c-menu-toggle::before,
+.pf-v5-c-menu-toggle::after {
+  border: 0 !important;
+}
+
+@media (max-width: 36rem) {
+  .pf-v5-c-login__main {
+    border-radius: 0;
+    border-inline: 0;
+  }
+}

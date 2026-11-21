@@ -64,6 +64,27 @@ The realm file is for development only: it has test users and the password grant
 Keycloak imports the realm file only on first start. After pulling a change to it (for example new
 redirect URIs), recreate Keycloak's data: `docker compose down -v && docker compose up -d`.
 
+### Sign-in page and troubleshooting
+
+Keycloak's login, registration and password pages use the `trivallo` theme in
+`infra/keycloak-themes/trivallo` (mounted read-only into the container, selected by `loginTheme` in the
+realm file). It only overrides CSS and a few EN/FR texts on top of Keycloak's default `keycloak.v2` theme,
+so Keycloak upgrades keep working. `start-dev` turns theme caching off, so a page reload shows CSS edits. On an existing Keycloak volume, either recreate it as above or pick
+the theme in the admin console (realm `trivallo` > Realm settings > Themes > Login theme).
+
+If the site can't reach Keycloak when you click Sign in, it shows "Sign-in is unavailable" at
+`/account/unavailable` instead of a blank page. Check `docker compose ps` and `docker compose logs keycloak`.
+
+`password authentication failed for user "keycloak"` on Windows means
+`infra/postgres/init/01-create-keycloak-database.sh` was checked out with CRLF line endings, so Postgres never
+created the `keycloak` user. `.gitattributes` now forces LF. Fix an existing checkout, then recreate the
+volumes (this wipes local data):
+
+```bash
+git rm --cached -r . && git reset --hard   # re-checkout with LF (commit or stash your work first)
+docker compose down -v && docker compose up -d
+```
+
 ### Admin
 
 Open http://localhost:8000/en/admin (or http://localhost:4200/admin with `ng serve`) and sign in as

@@ -1,6 +1,8 @@
 {
   "realm": "trivallo",
   "displayName": "Trivallo",
+  "displayNameHtml": "Trivallo",
+  "loginTheme": "trivallo",
   "enabled": true,
   "sslRequired": "external",
   "registrationAllowed": true,

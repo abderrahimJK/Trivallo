@@ -43,6 +43,8 @@ services:
       - "8081:8080"
     volumes:
       - ./infra/keycloak:/opt/keycloak/data/import:ro
+      # Trivallo look for the login pages (realm loginTheme "trivallo").
+      - ./infra/keycloak-themes/trivallo:/opt/keycloak/themes/trivallo:ro
     depends_on:
       postgres:
         condition: service_healthy
