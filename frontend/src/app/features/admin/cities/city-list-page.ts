@@ -1,6 +1,7 @@
 import { httpResource } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { sizedImageUrl } from '../../../core/media/image-sizes';
 import { adminApi } from '../api/admin-api';
 import { CityAdmin, englishName } from '../api/admin.models';
 import { AdminPageHeader } from '../ui/page-header';
@@ -28,7 +29,11 @@ import { AdminPageHeader } from '../ui/page-header';
               class="block overflow-hidden rounded-xl border border-border bg-background hover:border-foreground/40"
             >
               @if (city.heroImageUrl) {
-                <img [src]="city.heroImageUrl" alt="" class="aspect-[16/9] w-full object-cover" />
+                <img
+                  [src]="medium(city.heroImageUrl)"
+                  alt=""
+                  class="aspect-[16/9] w-full object-cover"
+                />
               } @else {
                 <div
                   class="grid aspect-[16/9] place-items-center bg-muted text-sm text-muted-foreground"
@@ -59,6 +64,7 @@ import { AdminPageHeader } from '../ui/page-header';
 export class CityListPage {
   protected readonly cities = httpResource<CityAdmin[]>(() => adminApi.cities());
   protected readonly name = englishName;
+  protected readonly medium = (url: string) => sizedImageUrl(url, 'md');
   protected hasFrench(city: CityAdmin): boolean {
     return city.translations.some((t) => t.locale === 'fr');
   }

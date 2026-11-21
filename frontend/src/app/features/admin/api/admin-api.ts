@@ -54,11 +54,18 @@ export class AdminWriteApi {
     return this.http.put<ActivityAdmin>(`${adminApi.activity(id)}/status`, { status });
   }
 
-  addImage(id: number, file: File, altText: string): Observable<ActivityAdmin> {
+  addImage(id: number, file: File): Observable<ActivityAdmin> {
     const form = new FormData();
     form.append('file', file);
-    if (altText.trim()) form.append('altText', altText.trim());
     return this.http.post<ActivityAdmin>(`${adminApi.activity(id)}/images`, form);
+  }
+
+  updateImageText(
+    id: number,
+    imageId: number,
+    text: { altText: string; altTextFr: string | null },
+  ): Observable<ActivityAdmin> {
+    return this.http.put<ActivityAdmin>(`${adminApi.activity(id)}/images/${imageId}`, text);
   }
 
   reorderImages(id: number, imageIds: number[]): Observable<ActivityAdmin> {

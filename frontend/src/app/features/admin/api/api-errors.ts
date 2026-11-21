@@ -28,7 +28,7 @@ export function toApiFailure(error: unknown): ApiFailure {
         fieldErrors,
       };
     case 413:
-      return { message: 'The file is too large (5 MB maximum).', fieldErrors };
+      return { message: 'The file is too large (10 MB maximum).', fieldErrors };
     default:
       return { message: body?.detail ?? `Request failed (${error.status}).`, fieldErrors };
   }
