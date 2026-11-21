@@ -9,13 +9,10 @@ import java.util.Optional;
  */
 public enum ImageFormat {
     JPEG("jpg", "image/jpeg"),
-    PNG("png", "image/png"),
-    WEBP("webp", "image/webp");
+    PNG("png", "image/png");
 
     private static final byte[] JPEG_SIGNATURE = {(byte) 0xFF, (byte) 0xD8, (byte) 0xFF};
     private static final byte[] PNG_SIGNATURE = {(byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n'};
-    private static final byte[] RIFF = {'R', 'I', 'F', 'F'};
-    private static final byte[] WEBP_MARKER = {'W', 'E', 'B', 'P'};
 
     /** Bytes needed to tell every supported format apart. */
     public static final int HEADER_LENGTH = 12;
@@ -43,14 +40,11 @@ public enum ImageFormat {
         if (startsWith(header, 0, PNG_SIGNATURE)) {
             return Optional.of(PNG);
         }
-        if (startsWith(header, 0, RIFF) && startsWith(header, 8, WEBP_MARKER)) {
-            return Optional.of(WEBP);
-        }
         return Optional.empty();
     }
 
     public static String acceptedList() {
-        return String.join(", ", Arrays.stream(values()).map(format -> format.extension.toUpperCase()).toList());
+        return String.join(" or ", Arrays.stream(values()).map(format -> format.extension.toUpperCase()).toList());
     }
 
     private static boolean startsWith(byte[] data, int offset, byte[] prefix) {

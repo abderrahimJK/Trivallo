@@ -6,6 +6,7 @@ import com.trivallo.catalog.activity.dto.admin.ActivityAdminSummaryResponse;
 import com.trivallo.catalog.activity.dto.admin.ActivityStatsResponse;
 import com.trivallo.catalog.activity.dto.admin.ActivityStatusRequest;
 import com.trivallo.catalog.activity.dto.admin.ImageOrderRequest;
+import com.trivallo.catalog.activity.dto.admin.ImageTextRequest;
 import com.trivallo.shared.config.OpenApiConfig;
 import com.trivallo.shared.web.PageResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -92,8 +93,8 @@ public class ActivityAdminController {
 
     @PostMapping(path = "/{id}/images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Upload an image (JPEG, PNG or WebP, up to 5 MB); it goes last in the gallery")
-    @ApiResponse(responseCode = "400", description = "Empty file or not a supported image")
+    @Operation(summary = "Upload an image (JPEG or PNG, up to 10 MB; resized to 640, 1280 and 1920 px wide); it goes last in the gallery")
+    @ApiResponse(responseCode = "400", description = "Empty file, not a supported image, or already 20 images")
     @ApiResponse(responseCode = "413", description = "File too large")
     public ActivityAdminResponse addImage(
             @PathVariable long id,
@@ -101,6 +102,13 @@ public class ActivityAdminController {
             @Parameter(description = "Describes the photo for screen readers and search engines")
             @RequestParam(required = false) @Size(max = 255) String altText) {
         return activityAdminService.addImage(id, file, altText);
+    }
+
+    @PutMapping("/{id}/images/{imageId}")
+    @Operation(summary = "Change an image's descriptions (English required, French optional)")
+    public ActivityAdminResponse updateImageText(
+            @PathVariable long id, @PathVariable long imageId, @Valid @RequestBody ImageTextRequest request) {
+        return activityAdminService.updateImageText(id, imageId, request.altText(), request.altTextFr());
     }
 
     @PutMapping("/{id}/images/order")

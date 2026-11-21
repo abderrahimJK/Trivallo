@@ -103,6 +103,7 @@ public class ActivityAdminService {
 
     public ActivityAdminResponse addImage(long id, MultipartFile file, String altText) {
         Activity activity = find(id);
+        ActivityImageRules.checkCanAdd(activity.getImages().size());
         String url = imageStorage.store(file, "activities/" + id, "file");
         int nextOrder = activity.getImages().stream().mapToInt(ActivityImage::getSortOrder).max().orElse(-1) + 1;
         ActivityImage image = new ActivityImage();
@@ -111,6 +112,14 @@ public class ActivityAdminService {
         image.setAltText(blankToNull(altText));
         image.setSortOrder(nextOrder);
         activity.getImages().add(image);
+        return mapper.toResponse(activityRepository.saveAndFlush(activity));
+    }
+
+    public ActivityAdminResponse updateImageText(long id, long imageId, String altText, String altTextFr) {
+        Activity activity = find(id);
+        ActivityImage image = findImage(activity, imageId);
+        image.setAltText(blankToNull(altText));
+        image.setAltTextFr(blankToNull(altTextFr));
         return mapper.toResponse(activityRepository.saveAndFlush(activity));
     }
 
@@ -132,14 +141,18 @@ public class ActivityAdminService {
 
     public ActivityAdminResponse deleteImage(long id, long imageId) {
         Activity activity = find(id);
-        ActivityImage image = activity.getImages().stream()
-                .filter(candidate -> Objects.equals(candidate.getId(), imageId))
-                .findFirst()
-                .orElseThrow(() -> new ImageNotFoundException(id, imageId));
+        ActivityImage image = findImage(activity, imageId);
         activity.getImages().remove(image);
         Activity saved = activityRepository.saveAndFlush(activity);
         imageStorage.delete(image.getUrl());
         return mapper.toResponse(saved);
+    }
+
+    private static ActivityImage findImage(Activity activity, long imageId) {
+        return activity.getImages().stream()
+                .filter(candidate -> Objects.equals(candidate.getId(), imageId))
+                .findFirst()
+                .orElseThrow(() -> new ImageNotFoundException(activity.getId(), imageId));
     }
 
     private Activity find(long id) {

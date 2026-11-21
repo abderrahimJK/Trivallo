@@ -1,4 +1,4 @@
 package com.trivallo.catalog.activity.dto.admin;
 
-public record AdminImageResponse(long id, String url, String altText, int sortOrder) {
+public record AdminImageResponse(long id, String url, String altText, String altTextFr, int sortOrder) {
 }

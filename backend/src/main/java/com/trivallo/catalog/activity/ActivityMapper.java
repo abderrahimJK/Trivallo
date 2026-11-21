@@ -63,7 +63,12 @@ public interface ActivityMapper {
     @Mapping(target = "locale", source = "translation.locale")
     ActivityDetailResponse toDetailResponse(Activity activity, ActivityTranslation translation, @Context AppLocale locale);
 
-    ActivityImageResponse toImageResponse(ActivityImage image);
+    /** French description when there is one, otherwise the English one. */
+    default ActivityImageResponse toImageResponse(ActivityImage image, @Context AppLocale locale) {
+        String french = image.getAltTextFr();
+        String altText = locale == AppLocale.FR && french != null && !french.isBlank() ? french : image.getAltText();
+        return new ActivityImageResponse(image.getUrl(), altText);
+    }
 
     default CityRefResponse toCityRef(City city, @Context AppLocale locale) {
         CityTranslation translation = Translations.resolve(city.getTranslations(), locale, "city " + city.getSlug());

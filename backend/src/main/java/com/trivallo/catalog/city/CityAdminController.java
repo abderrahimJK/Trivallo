@@ -56,7 +56,7 @@ public class CityAdminController {
     }
 
     @PutMapping(path = "/{id}/hero-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Replace the hero image (JPEG, PNG or WebP, up to 5 MB)")
+    @Operation(summary = "Replace the hero image (JPEG or PNG, up to 10 MB; resized to 640, 1280 and 1920 px wide)")
     @ApiResponse(responseCode = "400", description = "Empty file or not a supported image")
     public CityAdminResponse replaceHeroImage(@PathVariable long id, @RequestPart("file") MultipartFile file) {
         return cityAdminService.replaceHeroImage(id, file);

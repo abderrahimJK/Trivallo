@@ -32,8 +32,12 @@ public class ActivityImage {
     @Column(nullable = false, length = 500)
     private String url;
 
+    /** English description; also the fallback for other languages. */
     @Column(name = "alt_text", length = 255)
     private String altText;
+
+    @Column(name = "alt_text_fr", length = 255)
+    private String altTextFr;
 
     @Column(name = "sort_order", nullable = false)
     private int sortOrder;
