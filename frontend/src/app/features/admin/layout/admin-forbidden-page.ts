@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AdminSession } from './admin-session';
+import { AccountSession } from '../../../core/auth/account-session';
 
 /** Signed in, but the account does not have the ADMIN role. */
 @Component({
@@ -22,5 +22,5 @@ import { AdminSession } from './admin-session';
   `,
 })
 export class AdminForbiddenPage {
-  protected readonly session = inject(AdminSession);
+  protected readonly session = inject(AccountSession);
 }

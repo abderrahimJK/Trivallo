@@ -65,6 +65,54 @@
         <source>Yes. Since nothing is paid in advance, just let us know as early as possible so the guide can free your place.</source>
       </segment>
     </unit>
+    <unit id="account.title">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:14,15</note>
+      </notes>
+      <segment>
+        <source>Your account</source>
+      </segment>
+    </unit>
+    <unit id="account.signedInAs">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:15,16</note>
+      </notes>
+      <segment>
+        <source>Signed in as</source>
+      </segment>
+    </unit>
+    <unit id="account.openAdmin">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:24,26</note>
+      </notes>
+      <segment>
+        <source>Open the admin dashboard</source>
+      </segment>
+    </unit>
+    <unit id="account.browseTrips">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:28,31</note>
+      </notes>
+      <segment>
+        <source>Browse trips</source>
+      </segment>
+    </unit>
+    <unit id="account.signOut">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:37,38</note>
+      </notes>
+      <segment>
+        <source> Sign out </source>
+      </segment>
+    </unit>
+    <unit id="account.pageTitle">
+      <notes>
+        <note category="location">src/app/features/account/account-page.ts:48</note>
+      </notes>
+      <segment>
+        <source>Your account · Trivallo</source>
+      </segment>
+    </unit>
     <unit id="activities.title">
       <notes>
         <note category="location">src/app/features/activities/activities-page.ts:15,16</note>
@@ -256,7 +304,7 @@
     <unit id="filters.excursion">
       <notes>
         <note category="location">src/app/features/activities/activity-filter-panel.ts:131</note>
-        <note category="location">src/app/layout/site-header.ts:256</note>
+        <note category="location">src/app/layout/site-header.ts:273</note>
       </notes>
       <segment>
         <source>Excursions</source>
@@ -265,7 +313,7 @@
     <unit id="filters.activity">
       <notes>
         <note category="location">src/app/features/activities/activity-filter-panel.ts:132</note>
-        <note category="location">src/app/layout/site-header.ts:257</note>
+        <note category="location">src/app/layout/site-header.ts:274</note>
       </notes>
       <segment>
         <source>Activities</source>
@@ -812,7 +860,7 @@
     <unit id="header.navLabel">
       <notes>
         <note category="location">src/app/layout/site-header.ts:57,58</note>
-        <note category="location">src/app/layout/site-header.ts:183,184</note>
+        <note category="location">src/app/layout/site-header.ts:197,198</note>
       </notes>
       <segment>
         <source>Main</source>
@@ -820,16 +868,32 @@
     </unit>
     <unit id="header.allTrips">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:81,83</note>
-        <note category="location">src/app/layout/site-header.ts:236,238</note>
+        <note category="location">src/app/layout/site-header.ts:79,81</note>
+        <note category="location">src/app/layout/site-header.ts:250,252</note>
       </notes>
       <segment>
         <source>All trips</source>
       </segment>
     </unit>
+    <unit id="header.account">
+      <notes>
+        <note category="location">src/app/layout/site-header.ts:92,93</note>
+      </notes>
+      <segment>
+        <source>Your account:</source>
+      </segment>
+    </unit>
+    <unit id="header.signIn">
+      <notes>
+        <note category="location">src/app/layout/site-header.ts:95,97</note>
+      </notes>
+      <segment>
+        <source>Sign in</source>
+      </segment>
+    </unit>
     <unit id="header.menu">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:94,95</note>
+        <note category="location">src/app/layout/site-header.ts:105,106</note>
       </notes>
       <segment>
         <source>Menu</source>
@@ -837,7 +901,7 @@
     </unit>
     <unit id="header.morocco">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:108,109</note>
+        <note category="location">src/app/layout/site-header.ts:119,120</note>
       </notes>
       <segment>
         <source>Morocco</source>
@@ -845,7 +909,7 @@
     </unit>
     <unit id="header.allDestinations">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:110,111</note>
+        <note category="location">src/app/layout/site-header.ts:121,122</note>
       </notes>
       <segment>
         <source>All trips in Morocco</source>
@@ -853,7 +917,7 @@
     </unit>
     <unit id="header.tripType">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:138,139</note>
+        <note category="location">src/app/layout/site-header.ts:152,153</note>
       </notes>
       <segment>
         <source>Trip type</source>
@@ -861,7 +925,7 @@
     </unit>
     <unit id="header.experiences">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:153,154</note>
+        <note category="location">src/app/layout/site-header.ts:167,168</note>
       </notes>
       <segment>
         <source>Experiences</source>
@@ -869,7 +933,7 @@
     </unit>
     <unit id="header.destinations">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:251</note>
+        <note category="location">src/app/layout/site-header.ts:268</note>
       </notes>
       <segment>
         <source>Destinations</source>
@@ -877,7 +941,7 @@
     </unit>
     <unit id="header.waysToTravel">
       <notes>
-        <note category="location">src/app/layout/site-header.ts:252</note>
+        <note category="location">src/app/layout/site-header.ts:269</note>
       </notes>
       <segment>
         <source>Ways to travel</source>

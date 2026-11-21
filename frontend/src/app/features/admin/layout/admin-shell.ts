@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Icon } from '../../../shared/ui/icon';
-import { AdminSession } from './admin-session';
+import { AccountSession } from '../../../core/auth/account-session';
 
 interface NavItem {
   label: string;
@@ -79,7 +79,7 @@ interface NavItem {
   `,
 })
 export class AdminShell {
-  protected readonly session = inject(AdminSession);
+  protected readonly session = inject(AccountSession);
   protected readonly menuOpen = signal(false);
 
   protected readonly nav: NavItem[] = [

@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
-import { SECURED_API_PREFIX } from './admin-area';
+import { SECURED_API_PREFIX } from './auth-area';
 
 /**
  * Where the admin's access token comes from. The admin area registers the OIDC library here
