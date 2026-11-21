@@ -69,3 +69,16 @@ npm run extract-i18n                     # updates src/locale/messages.xlf
 
 Then add the new units with a `<target>` to `src/locale/messages.fr.xlf`. The build fails on
 a missing French translation (`i18nMissingTranslation: error`), so nothing ships half-translated.
+
+## Admin area
+
+`/admin` (English only, client-rendered) signs in with Keycloak through `angular-auth-oidc-client`
+(authorization code + PKCE) and requires the realm role `ADMIN`.
+
+- `core/auth/admin.guard.ts`: sign-in redirect, ADMIN check, "no access" page, return to the requested page.
+- `core/auth/admin-token.interceptor.ts`: adds the bearer token to `/api/v1/admin/` calls only.
+- The OIDC library is never part of public page loads: `main.ts` adds its providers only when the app
+  starts on an admin URL, and the admin route is excluded from preloading. Opening the admin from a
+  public page does a full reload of the admin URL.
+- `KEYCLOAK_REALM_URL` in `core/auth/auth.config.ts` is the local Keycloak; production replaces it in week 4.
+

@@ -1,0 +1,345 @@
+<trv-admin-page-header [title]="heading()" backLink="/admin/activities" backLabel="All activities">
+  @if (activity(); as a) {
+    <div class="flex flex-wrap items-center gap-2">
+      <trv-status-badge [status]="a.status" />
+      @if (a.status === 'PUBLISHED') {
+        <a [routerLink]="['/activities', a.slug]" class="link text-sm">View on site</a>
+      }
+      @if (a.status !== 'PUBLISHED') {
+        <button
+          type="button"
+          class="btn-cta"
+          [disabled]="saving()"
+          (click)="setStatus('PUBLISHED')"
+        >
+          Publish
+        </button>
+      }
+      @if (a.status === 'PUBLISHED') {
+        <button
+          type="button"
+          class="btn-outline"
+          [disabled]="saving()"
+          (click)="setStatus('DRAFT')"
+        >
+          Unpublish
+        </button>
+      }
+      @if (a.status !== 'ARCHIVED') {
+        <button
+          type="button"
+          class="btn-outline"
+          [disabled]="saving()"
+          (click)="setStatus('ARCHIVED')"
+        >
+          Archive
+        </button>
+      }
+    </div>
+  }
+</trv-admin-page-header>
+
+@if (loadFailed()) {
+  <p role="alert" class="rounded-lg border border-red-300 bg-red-50 p-4 text-red-900">
+    This activity could not be loaded. It may have been removed.
+    <a routerLink="/admin/activities" class="link">Back to the list</a>
+  </p>
+} @else {
+  <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
+    <form [formGroup]="form" (ngSubmit)="save()" class="space-y-6" novalidate>
+      <!-- Texts, per language -->
+      <section
+        class="rounded-xl border border-border bg-background p-5"
+        aria-labelledby="texts-title"
+      >
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <h2 id="texts-title" class="text-lg font-bold">Texts</h2>
+          <div role="tablist" aria-label="Language" class="inline-flex rounded-lg bg-muted p-1">
+            @for (lang of ['en', 'fr']; track lang) {
+              <button
+                type="button"
+                role="tab"
+                [attr.aria-selected]="language() === lang"
+                class="min-h-9 rounded-md px-4 text-sm font-semibold"
+                [class.bg-background]="language() === lang"
+                [class.shadow-sm]="language() === lang"
+                (click)="language.set($any(lang))"
+              >
+                {{ lang === 'en' ? 'English' : 'French' }}
+                @if (form.get(lang)?.invalid && form.get(lang)?.touched) {
+                  <span class="text-red-700">•</span>
+                }
+              </button>
+            }
+          </div>
+        </div>
+        @if (language() === 'fr') {
+          <p class="mt-2 text-sm text-muted-foreground">
+            Optional. Leave the French title empty to show the English text on the French site.
+          </p>
+        }
+
+        @for (lang of ['en', 'fr']; track lang) {
+          <div [formGroupName]="lang" [hidden]="language() !== lang" class="mt-4 grid gap-4">
+            <label>
+              <span class="field-label"
+                >Title
+                @if (lang === 'en') {
+                  <span aria-hidden="true">*</span>
+                }
+              </span>
+              <input class="field" formControlName="title" maxlength="200" />
+              <trv-field-error [control]="form.get(lang + '.title')!" />
+            </label>
+            <label>
+              <span class="field-label">Summary</span>
+              <textarea
+                class="field py-2"
+                rows="2"
+                formControlName="summary"
+                maxlength="500"
+              ></textarea>
+              <span class="text-xs text-muted-foreground"
+                >One or two sentences, shown on cards.</span
+              >
+            </label>
+            <label>
+              <span class="field-label">Description</span>
+              <textarea class="field py-2" rows="6" formControlName="description"></textarea>
+            </label>
+            <label>
+              <span class="field-label">Itinerary</span>
+              <textarea class="field py-2" rows="5" formControlName="itinerary"></textarea>
+            </label>
+            <div class="grid gap-4 md:grid-cols-2">
+              <label>
+                <span class="field-label">Included</span>
+                <textarea class="field py-2" rows="4" formControlName="included"></textarea>
+                <span class="text-xs text-muted-foreground">One item per line.</span>
+              </label>
+              <label>
+                <span class="field-label">Not included</span>
+                <textarea class="field py-2" rows="4" formControlName="notIncluded"></textarea>
+                <span class="text-xs text-muted-foreground">One item per line.</span>
+              </label>
+            </div>
+            <details class="rounded-lg border border-border p-3">
+              <summary class="text-sm font-semibold">Search engine texts</summary>
+              <div class="mt-3 grid gap-4">
+                <label>
+                  <span class="field-label">Meta title</span>
+                  <input class="field" formControlName="metaTitle" maxlength="120" />
+                </label>
+                <label>
+                  <span class="field-label">Meta description</span>
+                  <textarea
+                    class="field py-2"
+                    rows="2"
+                    formControlName="metaDescription"
+                    maxlength="320"
+                  ></textarea>
+                </label>
+              </div>
+            </details>
+          </div>
+        }
+      </section>
+
+      <!-- Trip details -->
+      <section
+        class="rounded-xl border border-border bg-background p-5"
+        aria-labelledby="details-title"
+      >
+        <h2 id="details-title" class="text-lg font-bold">Trip details</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <label>
+            <span class="field-label">City *</span>
+            <select class="field" formControlName="citySlug">
+              <option value="" disabled>Choose a city</option>
+              @for (c of cities.value() ?? []; track c.id) {
+                <option [value]="c.slug">{{ cityName(c) }}</option>
+              }
+            </select>
+            <trv-field-error [control]="form.controls.citySlug" />
+          </label>
+          <label>
+            <span class="field-label">Category *</span>
+            <select class="field" formControlName="categorySlug">
+              <option value="" disabled>Choose a category</option>
+              @for (c of categories.value() ?? []; track c.id) {
+                <option [value]="c.slug">{{ cityName(c) }}</option>
+              }
+            </select>
+            <trv-field-error [control]="form.controls.categorySlug" />
+          </label>
+          <fieldset>
+            <legend class="field-label">Type *</legend>
+            <div class="flex gap-4">
+              <label class="flex min-h-11 items-center gap-2"
+                ><input type="radio" formControlName="type" value="EXCURSION" /> Excursion</label
+              >
+              <label class="flex min-h-11 items-center gap-2"
+                ><input type="radio" formControlName="type" value="ACTIVITY" /> Activity</label
+              >
+            </div>
+          </fieldset>
+          <label>
+            <span class="field-label">URL slug *</span>
+            <input class="field font-mono text-sm" formControlName="slug" maxlength="160" />
+            <span class="text-xs text-muted-foreground"
+              >Used in the page address: /activities/{{ form.controls.slug.value || '…' }}</span
+            >
+            <trv-field-error [control]="form.controls.slug" />
+          </label>
+          <label>
+            <span class="field-label">Adult price (EUR) *</span>
+            <input
+              class="field"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              formControlName="priceAdultEur"
+            />
+            <trv-field-error [control]="form.controls.priceAdultEur" />
+          </label>
+          <label>
+            <span class="field-label">Child price (EUR) *</span>
+            <input
+              class="field"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              formControlName="priceChildEur"
+            />
+            <trv-field-error [control]="form.controls.priceChildEur" />
+            @if (form.hasError('childAboveAdult') && form.controls.priceChildEur.touched) {
+              <p class="mt-1 text-sm text-red-700">
+                The child price cannot be higher than the adult price.
+              </p>
+            }
+          </label>
+          <label>
+            <span class="field-label">Duration (minutes) *</span>
+            <input
+              class="field"
+              type="number"
+              min="15"
+              max="20160"
+              step="15"
+              formControlName="durationMinutes"
+            />
+            <span class="text-xs text-muted-foreground"
+              >e.g. 240 for half a day, 2880 for two days.</span
+            >
+            <trv-field-error [control]="form.controls.durationMinutes" />
+          </label>
+          <label>
+            <span class="field-label">Maximum group size *</span>
+            <input class="field" type="number" min="1" max="200" formControlName="maxGroupSize" />
+            <trv-field-error [control]="form.controls.maxGroupSize" />
+          </label>
+        </div>
+
+        <fieldset class="mt-4" formGroupName="operatingDays">
+          <legend class="field-label">Runs on *</legend>
+          <div class="flex flex-wrap gap-2">
+            @for (day of week; track day) {
+              <label class="flex min-h-11 items-center gap-2 rounded-lg border border-border px-3">
+                <input type="checkbox" [formControlName]="day" />
+                {{ day.charAt(0) + day.slice(1, 3).toLowerCase() }}
+              </label>
+            }
+          </div>
+          @if (form.controls.operatingDays.hasError('noDay')) {
+            <p class="mt-1 text-sm text-red-700">Pick at least one day.</p>
+          }
+        </fieldset>
+      </section>
+
+      <!-- Meeting point and links -->
+      <section
+        class="rounded-xl border border-border bg-background p-5"
+        aria-labelledby="place-title"
+      >
+        <h2 id="place-title" class="text-lg font-bold">Meeting point and links</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <label class="md:col-span-2">
+            <span class="field-label">Meeting point</span>
+            <input
+              class="field"
+              formControlName="meetingPoint"
+              maxlength="255"
+              placeholder="Hotel pick-up in Marrakech Medina"
+            />
+          </label>
+          <label>
+            <span class="field-label">Latitude</span>
+            <input class="field" type="number" step="0.000001" formControlName="latitude" />
+            <trv-field-error [control]="form.controls.latitude" />
+          </label>
+          <label>
+            <span class="field-label">Longitude</span>
+            <input class="field" type="number" step="0.000001" formControlName="longitude" />
+            <trv-field-error [control]="form.controls.longitude" />
+          </label>
+          @if (
+            form.hasError('coordinatesPair') &&
+            (form.controls.latitude.touched || form.controls.longitude.touched)
+          ) {
+            <p class="text-sm text-red-700 md:col-span-2">
+              Fill in both latitude and longitude, or neither.
+            </p>
+          }
+          <label class="md:col-span-2">
+            <span class="field-label">TripAdvisor link</span>
+            <input
+              class="field"
+              type="url"
+              formControlName="tripadvisorUrl"
+              placeholder="https://www.tripadvisor.com/…"
+            />
+            <trv-field-error [control]="form.controls.tripadvisorUrl" />
+          </label>
+        </div>
+      </section>
+
+      <div
+        class="sticky bottom-0 -mx-4 space-y-3 border-t border-border bg-background/95 px-4 py-4 backdrop-blur md:mx-0 md:rounded-xl md:border"
+      >
+        <trv-form-alert [failure]="failure()" />
+        @if (notice()) {
+          <p role="status" class="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-900">
+            {{ notice() }}
+          </p>
+        }
+        <div class="flex flex-wrap items-center gap-3">
+          <button type="submit" class="btn-cta" [disabled]="saving()">
+            {{ saving() ? 'Saving…' : isNew() ? 'Create draft' : 'Save changes' }}
+          </button>
+          @if (form.dirty && !isNew()) {
+            <span class="text-sm text-muted-foreground">Unsaved changes</span>
+          }
+        </div>
+      </div>
+    </form>
+
+    <aside class="space-y-6">
+      @if (activity(); as a) {
+        <trv-activity-images
+          [activityId]="a.id"
+          [images]="a.images"
+          (changed)="onImagesChanged($event)"
+        />
+      } @else {
+        <section
+          class="rounded-xl border border-dashed border-border bg-background p-5 text-sm text-muted-foreground"
+        >
+          <h2 class="text-lg font-bold text-foreground">Photos</h2>
+          <p class="mt-1">Create the draft first, then add photos here.</p>
+        </section>
+      }
+    </aside>
+  </div>
+}

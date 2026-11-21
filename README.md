@@ -61,6 +61,16 @@ curl -s -d grant_type=password -d client_id=trivallo-web \
 The realm file is for development only: it has test users and the password grant enabled on
 `trivallo-web`. The production realm is set up separately in week 4.
 
+Keycloak imports the realm file only on first start. After pulling a change to it (for example new
+redirect URIs), recreate Keycloak's data: `docker compose down -v && docker compose up -d`.
+
+### Admin
+
+Open http://localhost:8000/en/admin (or http://localhost:4200/admin with `ng serve`) and sign in as
+`admin@trivallo.local`. It manages activities (texts in EN/FR, prices, photos, publishing), cities
+(including hero photos) and categories. Uploaded photos are stored on disk under `MEDIA_DIR`
+(Docker volume `media-data`) and served at `/media/**`.
+
 ## Backend structure
 
 Package by feature, each with Controller → Service → Repository, DTOs as records and MapStruct mappers.
@@ -101,7 +111,8 @@ com.trivallo
 | `GET /api/v1/categories` | Public |
 | `GET /api/v1/activities?city=&category=&type=&minPrice=&maxPrice=&minDuration=&maxDuration=&page=&size=` | Public |
 | `GET /api/v1/activities/{slug}` | Public |
-| `/api/v1/admin/**` | `ADMIN` |
+| `/api/v1/admin/activities`, `/cities`, `/categories` (+ image uploads) | `ADMIN` |
+| `GET /media/**` (uploaded photos) | Public |
 | `/api/v1/me/**`, `/api/v1/bookings/**` | `TRAVELLER` |
 
 The full contract is in Swagger UI.
