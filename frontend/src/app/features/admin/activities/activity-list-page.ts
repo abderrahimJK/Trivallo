@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Page } from '../../../core/api/catalog.models';
+import { sizedImageUrl } from '../../../core/media/image-sizes';
 import { adminApi, toAdminActivityParams } from '../api/admin-api';
 import { ActivityAdminSummary, ActivityStatus, CityAdmin, englishName } from '../api/admin.models';
 import { AdminPageHeader } from '../ui/page-header';
@@ -87,7 +88,7 @@ const STATUSES: ActivityStatus[] = ['PUBLISHED', 'DRAFT', 'ARCHIVED'];
                   <div class="flex items-center gap-3">
                     @if (a.coverImageUrl) {
                       <img
-                        [src]="a.coverImageUrl"
+                        [src]="thumbnail(a.coverImageUrl)"
                         alt=""
                         class="size-12 shrink-0 rounded-md object-cover"
                       />
@@ -174,6 +175,7 @@ export class ActivityListPage {
 
   protected readonly statuses = STATUSES;
   protected readonly name = englishName;
+  protected readonly thumbnail = (url: string) => sizedImageUrl(url, 'sm');
   protected readonly pageIndex = computed(() => Math.max(0, this.page()));
 
   protected readonly cities = httpResource<CityAdmin[]>(() => adminApi.cities());

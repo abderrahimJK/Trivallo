@@ -12,6 +12,7 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
+import { sizedImageUrl } from '../../../core/media/image-sizes';
 import { adminApi, AdminWriteApi } from '../api/admin-api';
 import {
   CityAdmin,
@@ -128,7 +129,7 @@ import { AdminPageHeader } from '../ui/page-header';
             @if (city(); as c) {
               @if (c.heroImageUrl) {
                 <img
-                  [src]="c.heroImageUrl"
+                  [src]="medium(c.heroImageUrl)"
                   alt=""
                   class="mt-3 aspect-[16/9] w-full rounded-lg object-cover"
                 />
@@ -145,13 +146,13 @@ import { AdminPageHeader } from '../ui/page-header';
                   <input
                     #heroInput
                     type="file"
-                    accept="image/jpeg,image/png,image/webp"
+                    accept="image/jpeg,image/png"
                     class="field py-2"
                     required
                   />
                 </label>
                 <p class="text-xs text-muted-foreground">
-                  JPG, PNG or WEBP, up to 5 MB. Wide photos work best.
+                  JPEG or PNG, up to 10 MB, resized automatically. Wide photos work best.
                 </p>
                 <button type="submit" class="btn-outline" [disabled]="saving()">Upload</button>
               </form>
@@ -172,6 +173,7 @@ export class CityFormPage {
   private readonly fb = inject(FormBuilder).nonNullable;
 
   readonly id = input<string>();
+  protected readonly medium = (url: string) => sizedImageUrl(url, 'md');
 
   protected readonly languages: { code: Locale; label: string }[] = [
     { code: 'en', label: 'English' },

@@ -45,7 +45,23 @@
     <a routerLink="/admin/activities" class="link">Back to the list</a>
   </p>
 } @else {
-  <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
+  <div class="max-w-5xl space-y-6">
+    @if (activity(); as a) {
+      <trv-activity-images
+        [activityId]="a.id"
+        [images]="a.images"
+        [activityTitle]="heading()"
+        (changed)="onImagesChanged($event)"
+      />
+    } @else {
+      <section
+        class="rounded-xl border border-dashed border-border bg-background p-5 text-sm text-muted-foreground"
+      >
+        <h2 class="text-lg font-bold text-foreground">Images</h2>
+        <p class="mt-1">Create the draft first, then add up to 20 images here.</p>
+      </section>
+    }
+
     <form [formGroup]="form" (ngSubmit)="save()" class="space-y-6" novalidate>
       <!-- Texts, per language -->
       <section
@@ -324,22 +340,5 @@
         </div>
       </div>
     </form>
-
-    <aside class="space-y-6">
-      @if (activity(); as a) {
-        <trv-activity-images
-          [activityId]="a.id"
-          [images]="a.images"
-          (changed)="onImagesChanged($event)"
-        />
-      } @else {
-        <section
-          class="rounded-xl border border-dashed border-border bg-background p-5 text-sm text-muted-foreground"
-        >
-          <h2 class="text-lg font-bold text-foreground">Photos</h2>
-          <p class="mt-1">Create the draft first, then add photos here.</p>
-        </section>
-      }
-    </aside>
   </div>
 }

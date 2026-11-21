@@ -68,8 +68,14 @@ redirect URIs), recreate Keycloak's data: `docker compose down -v && docker comp
 
 Open http://localhost:8000/en/admin (or http://localhost:4200/admin with `ng serve`) and sign in as
 `admin@trivallo.local`. It manages activities (texts in EN/FR, prices, photos, publishing), cities
-(including hero photos) and categories. Uploaded photos are stored on disk under `MEDIA_DIR`
-(Docker volume `media-data`) and served at `/media/**`.
+(including hero photos) and categories. An activity has up to 20 images (the first is the cover),
+each with an English description and an optional French one.
+
+Uploads (JPEG or PNG, up to 10 MB) are resized by the backend with plain ImageIO into three widths,
+`<id>-sm.jpg` (640 px), `<id>-md.jpg` (1280 px) and `<id>-lg.jpg` (1920 px), never enlarged. Phone
+photos are turned upright from their EXIF orientation and all metadata (including GPS) is dropped.
+The API returns the `-lg` URL; the frontend's image loader builds `srcset` from the three files.
+They are stored on disk under `MEDIA_DIR` (Docker volume `media-data`) and served at `/media/**`.
 
 ## Backend structure
 

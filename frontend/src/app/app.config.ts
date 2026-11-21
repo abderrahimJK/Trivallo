@@ -1,3 +1,4 @@
+import { IMAGE_CONFIG, IMAGE_LOADER } from '@angular/common';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
@@ -17,6 +18,7 @@ import {
   withPreloading,
 } from '@angular/router';
 import { routes } from './app.routes';
+import { IMAGE_WIDTHS, resizedImageLoader } from './core/media/image-sizes';
 import { SelectivePreloading } from './core/routing/selective-preloading';
 import { adminTokenInterceptor } from './core/auth/admin-token.interceptor';
 import { acceptLanguageInterceptor } from './core/http/accept-language.interceptor';
@@ -48,6 +50,9 @@ export const appConfig: ApplicationConfig = {
         includeNonCacheableRequests: true,
       }),
     ),
+    // Uploaded photos exist in three widths; NgOptimizedImage builds srcset from them.
+    { provide: IMAGE_LOADER, useValue: resizedImageLoader },
+    { provide: IMAGE_CONFIG, useValue: { breakpoints: Object.values(IMAGE_WIDTHS) } },
     { provide: SITE_ORIGIN, useFactory: () => inject(DOCUMENT).location.origin },
     { provide: API_ORIGIN, useFactory: () => inject(DOCUMENT).location.origin },
   ],

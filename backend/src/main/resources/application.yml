@@ -19,8 +19,8 @@ spring:
   servlet:
     multipart:
       # Keep in line with trivallo.media.max-file-size; the request limit leaves room for form fields.
-      max-file-size: 5MB
-      max-request-size: 6MB
+      max-file-size: 10MB
+      max-request-size: 11MB
   security:
     oauth2:
       resourceserver:
@@ -42,7 +42,7 @@ trivallo:
     # A Docker volume in production; ./media next to the backend when run from the IDE.
     directory: ${MEDIA_DIR:./media}
     public-path: /media
-    max-file-size: 5MB
+    max-file-size: 10MB
 
 springdoc:
   api-docs:

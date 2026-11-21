@@ -41,9 +41,14 @@ export interface ActivityTranslation {
 export interface AdminImage {
   id: number;
   url: string;
+  /** English description (required before publishing a good gallery). */
   altText: string | null;
+  altTextFr: string | null;
   sortOrder: number;
 }
+
+/** Same limit as the backend's ActivityImageRules. */
+export const MAX_ACTIVITY_IMAGES = 20;
 
 export interface ActivityAdmin {
   id: number;
