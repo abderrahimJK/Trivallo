@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /*
  * Design tokens from design-system/trivallo (MASTER.md "Revision 2" + tokens.css), generated with
@@ -7,7 +7,7 @@
  * one brand blue for links, one terracotta CTA.
  */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #1d4ed8;
   --color-on-primary: #ffffff;
@@ -52,7 +52,7 @@
   button,
   select,
   summary,
-  [role="button"] {
+  [role='button'] {
     @apply cursor-pointer;
   }
 

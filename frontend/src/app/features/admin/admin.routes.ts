@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { adminGuard } from '../../core/auth/admin.guard';
+import { adminGuard } from '../../core/auth/signed-in.guard';
 
 /** Admin area (English only). Every page except "no access" requires the ADMIN role. */
 export const adminRoutes: Routes = [

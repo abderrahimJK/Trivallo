@@ -8,7 +8,7 @@ import { LogLevel, StsConfigLoader, StsConfigStaticLoader } from 'angular-auth-o
 export const KEYCLOAK_REALM_URL = 'http://localhost:8081/realms/trivallo';
 
 /**
- * Builds the OIDC config when it is first needed (in the browser, on an admin page), so
+ * Builds the OIDC config when it is first needed (in the browser, on /account or /admin), so
  * redirect URLs follow the current origin and locale base href (/en/ or /fr/).
  */
 export function authConfigLoader(): StsConfigLoader {
@@ -16,7 +16,8 @@ export function authConfigLoader(): StsConfigLoader {
   return new StsConfigStaticLoader({
     authority: KEYCLOAK_REALM_URL,
     clientId: 'trivallo-web',
-    redirectUrl: `${baseUri}admin`,
+    // One return page for everyone; accountGuard then continues to the page that asked for sign-in.
+    redirectUrl: `${baseUri}account`,
     postLogoutRedirectUri: baseUri,
     scope: 'openid profile email',
     responseType: 'code',

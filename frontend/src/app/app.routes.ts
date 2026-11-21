@@ -20,6 +20,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/city/city-page').then((m) => m.CityPage),
   },
   {
+    path: 'account',
+    data: { preload: false },
+    // Lazy like the admin: the guard brings the sign-in library, which public pages never load.
+    loadChildren: () => import('./features/account/account.routes').then((m) => m.accountRoutes),
+  },
+  {
     path: 'admin',
     data: { preload: false },
     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.adminRoutes),

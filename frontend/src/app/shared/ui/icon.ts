@@ -39,6 +39,10 @@ const ICONS: Record<string, Shape[]> = {
     { type: 'path', d: 'M3 12h18M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18' },
   ],
   menu: [{ type: 'path', d: 'M4 6h16M4 12h16M4 18h16' }],
+  user: [
+    { type: 'circle', cx: 12, cy: 8, r: 4 },
+    { type: 'path', d: 'M4 21a8 8 0 0 1 16 0' },
+  ],
   filters: [{ type: 'path', d: 'M4 6h16M7 12h10M10 18h4' }],
   external: [
     {

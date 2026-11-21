@@ -1,5 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -11,6 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { catalogApi } from '../core/api/catalog-api';
+import { SessionHint } from '../core/auth/session-hint';
 import { Category, City } from '../core/api/catalog.models';
 import { CITY_ORDER } from '../shared/ui/city-chapter';
 import { Icon } from '../shared/ui/icon';
@@ -80,6 +82,19 @@ type MenuId = 'destinations' | 'ways';
 
         <div class="flex items-center gap-1">
           <trv-language-switcher />
+          <!-- Sign-in lives on /account (it loads the sign-in library); the name is a display hint. -->
+          <a
+            routerLink="/account"
+            class="flex min-h-11 max-w-48 items-center gap-2 rounded-lg px-3 font-semibold transition-colors duration-200 hover:bg-muted"
+          >
+            <trv-icon name="user" class="size-5" />
+            @if (signedInName(); as name) {
+              <span class="sr-only" i18n="@@header.account">Your account:</span>
+              <span class="hidden truncate sm:inline">{{ name }}</span>
+            } @else {
+              <span class="sr-only sm:not-sr-only" i18n="@@header.signIn">Sign in</span>
+            }
+          </a>
           <button
             type="button"
             class="flex size-11 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-muted md:hidden"
@@ -246,6 +261,9 @@ export class SiteHeader {
   protected readonly openMenu = signal<MenuId | null>(null);
   protected readonly mobileOpen = signal(false);
 
+  private readonly sessionHint = inject(SessionHint);
+  protected readonly signedInName = this.sessionHint.name;
+
   protected readonly menus: { id: MenuId; label: string }[] = [
     { id: 'destinations', label: $localize`:@@header.destinations:Destinations` },
     { id: 'ways', label: $localize`:@@header.waysToTravel:Ways to travel` },
@@ -269,6 +287,9 @@ export class SiteHeader {
   });
 
   constructor() {
+    // Browser only, after hydration: the server cannot see the tab's sessionStorage.
+    afterNextRender(() => this.sessionHint.load());
+
     // Any navigation closes every menu (root component: lives as long as the app).
     inject(Router)
       .events.pipe(
