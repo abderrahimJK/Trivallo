@@ -9,6 +9,7 @@ import {
   linkedSignal,
   viewChild,
 } from '@angular/core';
+import { IMAGE_WIDTHS } from '../../core/media/image-sizes';
 import { cityTone } from './city-chapter';
 import { Icon } from './icon';
 
@@ -29,6 +30,7 @@ import { Icon } from './icon';
         [ngSrc]="url"
         [alt]="alt()"
         fill
+        [ngSrcset]="srcset"
         [sizes]="sizes()"
         [priority]="priority()"
         class="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -53,7 +55,16 @@ export class MediaFrame {
   readonly city = input<string | null>(null);
   /** Above-the-fold images: loaded eagerly with high fetch priority. */
   readonly priority = input(false);
+  /** Pixel widths are fine (e.g. "(min-width: 640px) 280px, 100vw") because the srcset is explicit. */
   readonly sizes = input('(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw');
+
+  /**
+   * The three widths the backend stores, so the browser picks among real files. Angular's automatic
+   * srcset would give the same list but rejects pixel values in sizes (NG02952).
+   */
+  protected readonly srcset = Object.values(IMAGE_WIDTHS)
+    .map((width) => `${width}w`)
+    .join(', ');
 
   protected readonly tone = computed(() => cityTone(this.city()));
 
